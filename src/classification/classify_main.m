@@ -29,11 +29,12 @@ figure;
 subplot(1,2,1); histogram(train.y); title('train labels');
 subplot(1,2,2); histogram(test.y); title('test labels');
 
-return % TEMP
 
 % The framenet codes should have already put features into [-1,1] for us.
-assert(-1 <= min(train.x(:)));
-assert(max(train.x(:)) <= 1);
+assert(-1 <= min(train.x(:)) + 1e-9);
+assert(max(train.x(:)) <= 1 + 1e-9);
+assert(-1 <= min(test.x(:)) + 1e-9);
+assert(max(test.x(:)) <= 1 + 1e-9);
 
 
 svm_info.n_train = [300, 500, 700, 1000, 2000, 5000];
