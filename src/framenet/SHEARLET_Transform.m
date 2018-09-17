@@ -14,7 +14,8 @@ classdef SHEARLET_Transform < Transform
     methods
         function srltTsfm = SHEARLET_Transform(non_linearity_name,filters_configuration_2_use_,num_scales,num_shear_levels,compute_full_shearlet_system)
             if(nargin < 1) non_linearity_name = 'abs'; end
-            srltTsfm = srltTsfm@Transform('shearlet',non_linearity_name);
+            %srltTsfm = srltTsfm@Transform('shearlet',non_linearity_name);
+            srltTsfm = srltTsfm@Transform('shearlet',non_linearity_name,[]); % mjp
             if(nargin < 3) srltTsfm.num_scales_ = 1; else srltTsfm.num_scales_ = num_scales; end
             if(nargin < 2) srltTsfm.filters_configuration_2_use_ = 7; else srltTsfm.filters_configuration_2_use_ = filters_configuration_2_use_; end
             srltTsfm.CalculateMinimumPossibleImageSize();

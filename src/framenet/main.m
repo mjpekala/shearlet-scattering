@@ -1,4 +1,4 @@
-function main(table_index,running_function_name,num_cpus,feature_transform_type,num_features_final,side_cut,set_type,num_train_samples,num_test_samples,varargin)
+function out = main(table_index,running_function_name,num_cpus,feature_transform_type,num_features_final,side_cut,set_type,num_train_samples,num_test_samples,varargin)
 % main(running_on_sge,table_index,running_function_name,num_cpus,feature_transform_type,num_features_final,side_cut,set_type,num_train_samples,num_test_samples,varargin)
 % Sample function to show usage of the Generalized Scattering "toolbox"
 % The script has VI phases:
@@ -72,7 +72,7 @@ diary on
 time.load = tic;
 dataset_mnist = Dataset_MNIST(set_type, num_train_samples, num_test_samples);
 % Initialize paralel toolbox if requested
-if (isempty(gcp('nocreate')) && (num_cpus > 1))
+if (num_cpus > 1) && (isempty(gcp('nocreate')))
     parpool([2,num_cpus]);
 end
 time.load = toc(time.load);
@@ -87,7 +87,7 @@ fprintf('Loading done in %f seconds\n', (time.load));
 time.scattering = tic;
 
 % Build scattering trees for training and test sets and run scattering
-if (~isempty(gcp('nocreate')) && (num_cpus > 1))
+if (num_cpus > 1) && (~isempty(gcp('nocreate')))
     parfor i = 1:length(dataset_mnist.train_images_)
         train_scattering_tree_collection{i,1} = ScatteringTree(dataset_mnist.train_images_{i,1},tsfms);
         train_scattering_tree_collection{i,1}.Scatter();
@@ -122,7 +122,6 @@ time.scattering = toc(time.scattering);
 fprintf('\n Scattering done in %f seconds\n', (time.scattering));
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PHASE III   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%% Generate Feature Vectors from Scattering Output %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,7 +154,8 @@ fprintf('Feature vector formatting done in %f seconds\n', (time.scattered_images
 %%%%%%%%%%%%%%%%%%%%%% Feature Normalization and/or Dimensionality Reduction %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 time.feature_normalization_and_dimensionality_reduction = tic;
-if ~isempty(gcp('nocreate'))
+%if ~isempty(gcp('nocreate'))
+if (num_cpus > 1) && (~isempty(gcp)) % mjp
     delete(gcp);
 end
 for i=1:length(feature_transform_type)
@@ -227,6 +227,15 @@ end
 time.feature_normalization_and_dimensionality_reduction = toc(time.feature_normalization_and_dimensionality_reduction);
 fprintf('Feature transformation (dim.reduction, selection and normalization) done in %f seconds\n', (time.feature_normalization_and_dimensionality_reduction));
 
+
+% MJP: below are my modifications.
+% Returns the features so they can be used in other experiments.
+if nargout > 0
+    out.train_feature_vectors = train_feature_vectors;
+    out.test_feature_vectors = test_feature_vectors;
+    out.dataset_mnist = dataset_mnist;
+    return;
+end
 
 
 
