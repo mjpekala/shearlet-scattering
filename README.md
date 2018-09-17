@@ -6,6 +6,8 @@ This is a minor modification of the framenet codes of T. Wiatowski et al.  The s
 
    [Download Link](https://www.nari.ee.ethz.ch/commth/research/downloads/dl_feat_extract.html)
 
+(last accessed: September 2018)
+
 I have also taken the liberty of downloading the software dependencies for framenet and adding them to this repository.  These include Shearlab 3D, MNIST data loading utilities, and a custom implemention of ols dimension reduction.  See the framenet documentation for more details.
 
-(last accessed: September 2018)
+This code is designed exclusively (?) for experiments involving MNIST. You will also need the MNIST data set.  There are two scripts I have added in  the [mnist data directory](./src/framenet/MNIST_dataset) which will (a) download MNIST and (b) rename the files to match what the framenet codes expect.  This will need to be done 1x before running the [shearlet_single_run_mjp](./src/framenet/shearlet_singe_run_mjp.m) script.
