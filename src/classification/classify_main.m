@@ -9,6 +9,9 @@ meta.seed = 1066;
 meta.svm_kernel = 'linear';
 rng(meta.seed);
 
+% add libsvm to path; sorry about this - I'm in a hurry.
+addpath('/Users/mjp/Documents/Repos/github/dcwt-v2/src/3rd-party/libsvm/matlab');
+
 
 %% svm train/test ====================================================
 
@@ -33,8 +36,12 @@ subplot(1,2,2); histogram(test.y); title('test labels');
 % The framenet codes should have already put features into [-1,1] for us.
 assert(-1 <= min(train.x(:)) + 1e-9);
 assert(max(train.x(:)) <= 1 + 1e-9);
-assert(-1 <= min(test.x(:)) + 1e-9);
-assert(max(test.x(:)) <= 1 + 1e-9);
+
+% The way they normalized test data, the assertions below are not guaranteed.
+% There are also some funky values at second order scattering that act 
+% like outliers.  So for now, we just go with it, but I am a little wary...
+%assert(-1 <= min(test.x(:)) + 1e-9);
+%assert(max(test.x(:)) <= 1 + 1e-9);
 
 
 svm_info.n_train = [300, 500, 700, 1000, 2000, 5000];
@@ -51,7 +58,7 @@ for ii = 1:length(svm_info.n_train)
     % note: Here we relied upon framenet to balance the training data.
     %is_train = indices_of_first_n(train.y, n_train/10);
 
-    x_train = train.x(:, 1:n_train);
+    x_train = train.x(1:n_train,:);
     y_train = train.y(1:n_train);
    
     fprintf('[%s] Training data has %d examples and %d features\n', ...
