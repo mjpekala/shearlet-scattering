@@ -34,7 +34,6 @@ num_cpus_to_use = 1;  % MJP: I do not have parallel computing toolbox => use one
 
 
 % MNIST parameters
-%num_train_samples = 10000;
 num_train_samples = 5000;   % MJP: for our experiments we only use up to 5k training examples
 num_test_samples = 10000;
 set_type = 1;               % 1 - get balanced test set, starting from 1st index
