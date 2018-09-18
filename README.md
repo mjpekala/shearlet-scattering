@@ -16,4 +16,13 @@ I have also taken the liberty of downloading the software dependencies for frame
 
 2.  Generate shearlet scattering transform features.  I (mjp) have created a script [shearlet_single_run_mjp](./src/framenet/shearlet_single_run_mjp.m) that will generate scattering features for a subset of MNIST.  In particular, we generate features only for the subset of the training data set needed for our experiments.  We also to the extent possible use only default parameters from framenet and do not (as of this writing) conduct hyperparameter selection.
 
-3.  Evaluate performance.  I (mjp) have my own script for evaluating using linear SVMs which is also used for Morlet and CHCDW wavelets.  A copy of the evaluation script is available TODO.  Expected performance is TODO.
+3.  Evaluate performance.  I (mjp) have my own script for evaluating using linear SVMs which is also used for Morlet and CHCDW wavelets.  A copy of the evaluation script is available [here](./src/evaluation/classify_main.m).  Note this requires a local libsvm installation.  With some minor modifications the script could be changed to use Matlab's built-in SVM if desired.
+
+## Expected results.
+
+Using the default framelet shearlet configuration, a scattering network configuration that is similar to that developed by the framenet authors for the separable wavelets (albeit without dimension reduction), and a linear SVM I observe the following errors (aggregate, across all 10 classes):
+
+| # Training Examples | Shearlet Scattering |  Morlet Scattering (Bruna & Mallat) |
+|      :---:          |---------------------|-------------------------------------|
+|    5000             |   2.96 %            |                                     |
+
