@@ -34,5 +34,5 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 ## References
 
 1.  [Framenet Download Link](https://www.nari.ee.ethz.ch/commth/research/downloads/dl_feat_extract.html) (last accessed: Sept. 2018)
-2.  Wiatowski et al. "Discrete deep feature extraction: A theory and new architectures" [Framenet paper](https://www.nari.ee.ethz.ch/commth/pubs/p/ICML2016)
-3.  Bruna & Mallat [Invariant Scattering Convolution Networks](https://www.di.ens.fr/~mallat/papiers/Bruna-Mallat-Pami-Scat.pdf) (last accessed: Sept. 2018)
+2.  Wiatowski et al. [Discrete deep feature extraction: A theory and new architectures](https://www.nari.ee.ethz.ch/commth/pubs/p/ICML2016), 2016.
+3.  Bruna & Mallat [Invariant Scattering Convolution Networks](https://www.di.ens.fr/~mallat/papiers/Bruna-Mallat-Pami-Scat.pdf), 2013.
