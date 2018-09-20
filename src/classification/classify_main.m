@@ -91,5 +91,5 @@ for ii = 1:length(svm_info.n_train)
     mean(diag(C) ./ sum(C,2))
 
     % save results incrementally 
-    save(output_fn, 'meta', 'svm_info', 'C', '-v7.3');
+    save(output_fn, 'meta', 'svm_info', 'y_test', 'C', '-v7.3');
 end
