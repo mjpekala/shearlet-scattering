@@ -22,14 +22,14 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 
 The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  For full details, see TBD.  The n=500,700 training example configurations are not reported, hence the n/a values.
 
-| # Training Examples | Shearlet Scattering Err. |  Morlet Scattering Err. (Bruna & Mallat 2013) |
-|      :---:          |    :---:                 |          :---:                                |
-|    300              |   12.44                  |     5.6                                       |
-|    500              |   8.76                   |     n/a                                       |
-|    700              |   6.85                   |     n/a                                       |
-|    1000             |   5.91                   |     2.6                                       |
-|    2000             |   4.23                   |     1.8                                       |
-|    5000             |   2.96                   |     1.4                                       |
+| # Training Examples | Shearlet (Err). |  Morlet  | CHCDW 12 |
+|      :---:          |    :---:        |   :---:  | :---:    |
+|    300              |   12.44         |     5.6  |   14.9   |
+|    500              |   8.76          |     n/a  |   8.6    |
+|    700              |   6.85          |     n/a  |   7.1    |
+|    1000             |   5.91          |     2.6  |          |
+|    2000             |   4.23          |     1.8  |          |
+|    5000             |   2.96          |     1.4  |          |
 
 ## References
 
