@@ -25,11 +25,11 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 
 | # Training Examples | Shearlet (9801). |  Morlet   | CHCDW 12, m1 |
 |      :---:          |    :---:         |   :---:   | :---:        |
-|    300              |   12.44          |     5.6   |   14.9       |
-|    500              |   8.76           |     n/a   |   8.6        |
-|    700              |   6.85           |     n/a   |   7.1        |
-|    1000             |   5.91           |     2.6   |              |
-|    2000             |   4.23           |     1.8   |              |
+|    300              |   12.44          |     5.6   |   14.3       |
+|    500              |   8.76           |     n/a   |   8.9        |
+|    700              |   6.85           |     n/a   |   6.9        |
+|    1000             |   5.91           |     2.6   |   5.5        |
+|    2000             |   4.23           |     1.8   |   3.3        |
 |    5000             |   2.96           |     1.4   |              |
 
 The number of dimenions used for the feature representations are
