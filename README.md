@@ -36,7 +36,7 @@ The number of dimenions used for the feature representations are
 
 |            | Shearlet    |  Morlet   | CHCDW 12, m1 |
 |  :---:     |      :---:  |  :---:    |   :---:      |
-|  # dims    |  9801       |           | 6xxx         |
+|  # dims    |  9801       |           | 6144         |
 
 ## References
 
