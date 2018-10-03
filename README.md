@@ -34,9 +34,9 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 
 The number of dimenions used for the feature representations are
 
-| Shearlet (9801). |  Morlet   | CHCDW 12, m1 |
-|      :---:       |  :---:    |   :---:      |
-|  9801            |           | 6xxx         |
+|            | Shearlet    |  Morlet   | CHCDW 12, m1 |
+|  :---:     |      :---:  |  :---:    |   :---:      |
+|  # dims    |  9801       |           | 6xxx         |
 
 ## References
 
