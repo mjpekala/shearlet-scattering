@@ -20,23 +20,25 @@ I have also taken the liberty of downloading the software dependencies for frame
 The results reported below are for the default framenet shearlet configuration ("shearlet0"), a two-layer scattering network configuration similar to that provided by the framenet authors for MNIST with separable wavelets (although I omit dimension reduction and make a few other changes), and and linear SVM.  Note that I do not embark upon hyperparameter search (in part, do to limited time and computational resources) so the results below could possibly be improved upon.  Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 Another caveat is that we use MNIST images that are of size 31x31 (framenet default).  These may be on the small side for optimal processing with Shearlab.
 
-The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  For full details, see TBD.  The n=500,700 training example configurations are not reported, hence the n/a values.
+The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  The n=500,700 training example configurations are not reported, hence the n/a values.  I have also included some results from our experiments with Harr-type CDW (joint work with W. Czaja).
 
 
-| # Training Examples | Shearlet  |  Morlet   | CHCDW-12-m1 |  CHCDW-12-m1-RS |
-|      :---:          |    :---:  |   :---:   | :---:       |  :---:          |
-|    300              |   12.44   |     5.6   |   11.95     |  12.04          |
-|    500              |   8.76    |           |   7.96      |   8.0           |
-|    700              |   6.85    |           |   6.4       |                 |
-|    1000             |   5.91    |     2.6   |             |                 |
-|    2000             |   4.23    |     1.8   |             |                 |
-|    5000             |   2.96    |     1.4   |             |                 |
+| # Training Examples | Shearlet  |  Morlet-m2 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |  CHCDW-12-m1-DrRNG |
+|      :---:          |    :---:  |   :---:    | :---:       |  :---:             | :---:              |
+|    300              |   12.44   |     5.6    |   11.95     |  11.05             |                    |
+|    500              |   8.76    |            |   7.96      |   7.85             |                    |
+|    700              |   6.85    |            |   6.4       |   7.34             |                    |
+|    1000             |   5.91    |     2.6    |             |                    |                    |
+|    2000             |   4.23    |     1.8    |             |                    |                    |
+|    5000             |   2.96    |     1.4    |             |                    |                    |
 
-The number of dimenions used for the feature representations are
+Some information about these feature sets:
 
-|            | Shearlet    |  Morlet   | CHCDW-12-m1 | CHCDW-12-m1-RS |
-|  :---:     |      :---:  |  :---:    |   :---:     | :---:          |
-|  # dims    |  9801       |           | 12233       |  9801          |
+|                | Shearlet    |  Morlet-m2 | CHCDW-12-m1 | CHCDW-12-m1-DrSVM |
+|  :---:         |      :---:  |  :---:     |   :---:     | :---:             |
+|  # dims        |  9801       |            | 12233       |  9801             |
+| dim. reduction | none        |  PCA?      | none        | SVM weight (300)  |
+| scat. depth    | 3           |   3        | 2           | 2                 |
 
 ## References
 
