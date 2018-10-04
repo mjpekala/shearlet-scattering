@@ -25,11 +25,11 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 
 | # Training Examples | Shearlet  |  Morlet-m2 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |  CHCDW-12-m1-DrRNG |
 |      :---:          |    :---:  |   :---:    | :---:       |  :---:             | :---:              |
-|    300              |   12.44   |     5.6    |   11.95     |  11.05             |                    |
-|    500              |   8.76    |            |   7.96      |   7.85             |                    |
-|    700              |   6.85    |            |   6.4       |   7.34             |                    |
-|    1000             |   5.91    |     2.6    |             |                    |                    |
-|    2000             |   4.23    |     1.8    |             |                    |                    |
+|    300              |   12.44   |     5.6    |   11.95     |  11.74             |  13.05             |
+|    500              |   8.76    |            |   7.96      |   7.92             |    8.1             |
+|    700              |   6.85    |            |   6.4       |   7.40             |                    |
+|    1000             |   5.91    |     2.6    |             |   5.95             |                    |
+|    2000             |   4.23    |     1.8    |             |   3.79             |                    |
 |    5000             |   2.96    |     1.4    |             |                    |                    |
 
 Some information about these feature sets:
