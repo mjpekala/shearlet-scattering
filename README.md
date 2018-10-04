@@ -23,20 +23,20 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  For full details, see TBD.  The n=500,700 training example configurations are not reported, hence the n/a values.
 
 
-| # Training Examples | Shearlet (9801). |  Morlet   | CHCDW 12, m1 |
-|      :---:          |    :---:         |   :---:   | :---:        |
-|    300              |   12.44          |     5.6   |   14.3       |
-|    500              |   8.76           |     n/a   |   8.9        |
-|    700              |   6.85           |     n/a   |   6.9        |
-|    1000             |   5.91           |     2.6   |   5.5        |
-|    2000             |   4.23           |     1.8   |   3.3        |
-|    5000             |   2.96           |     1.4   |              |
+| # Training Examples | Shearlet (9801). |  Morlet   | CHCDW-12-m1 |  CHCDW-12-m1-RS |
+|      :---:          |    :---:         |   :---:   | :---:       |  :---:          |
+|    300              |   12.44          |     5.6   |   11.95     |  12.04          |
+|    500              |   8.76           |     n/a   |   7.96      |                 |
+|    700              |   6.85           |     n/a   |   6.4       |                 |
+|    1000             |   5.91           |     2.6   |   TBD       |                 |
+|    2000             |   4.23           |     1.8   |   TBD       |                 |
+|    5000             |   2.96           |     1.4   |   TBD       |                 |
 
 The number of dimenions used for the feature representations are
 
-|            | Shearlet    |  Morlet   | CHCDW 12, m1 |
-|  :---:     |      :---:  |  :---:    |   :---:      |
-|  # dims    |  9801       |           | 6144         |
+|            | Shearlet    |  Morlet   | CHCDW-12-m1 | CHCDW-12-m1-RS |
+|  :---:     |      :---:  |  :---:    |   :---:     | :---:          |
+|  # dims    |  9801       |           | 12233       |  9801          |
 
 ## References
 
