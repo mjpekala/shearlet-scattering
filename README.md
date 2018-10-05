@@ -36,9 +36,13 @@ Some information about these feature sets:
 
 |                | Shearlet    |  Morlet-m2 | CHCDW-12-m1 | CHCDW-12-m1-DrSVM |
 |  :---:         |      :---:  |  :---:     |   :---:     | :---:             |
-|  # dims        |  9801       |            | 12233       |  9801             |
+|  # dims        |  9801       |            | 12288       |  9801             |
 | dim. reduction | none        |  PCA?      | none        | SVM weight (300)  |
 | scat. depth    | 3           |   3        | 2           | 2                 |
+
+The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
+1. layer 1: 8 * 8 * 12 = 768
+2. layer 2: (8*8*12) * (3*log(32)) = 11520
 
 ## References
 
