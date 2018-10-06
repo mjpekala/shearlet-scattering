@@ -46,11 +46,27 @@ set_type = 1;               % 1 - get balanced test set, starting from 1st index
 %      This is not a framenet limitation, but more a property of scattering
 %      transforms themselves.  Our CHCDW transform has the same
 %      limitations.
-num_layers = 2;
+ss_config = 2;
 
-pooling_1 = '';
-pooling_2 = 'p m 2 2';       % MJP: taken directy from haar experiment script.
-                             %      I believe this is 2x2 max pooling.
+switch(ss_config)
+  case 1
+    num_layers = 2;
+    pooling_1 = '';
+    pooling_2 = 'p m 2 2';       % MJP: taken directy from haar experiment script.
+                                 %      I believe this is 2x2 max pooling.
+    wavelet_xform = {'shearlet0', 'shearlet0', 'shearlet0'};
+
+  case 2
+    % this is basically what we do for Haar
+    fprintf('\n           --= ONE LAYER SCATTERING =--\n');
+    num_layers = 1;
+    pooling_1 = '';
+    wavelet_xform = {'shearlet0', 'shearlet0'};
+    
+  otherwise
+    error('unknown config');
+end
+        
 
 %feature_transform = '072';
 feature_transform = '011';   % MJP: specify no dimension reduction; features in [-1,1]
@@ -70,7 +86,8 @@ g_end = -3;
 
 
 %%
-warning off % MJP: turn off shearlet warnings.  ShearLab does not like to work with images as small as 33x33 (but will)
+warning off % MJP: turn off shearlet warnings.  ShearLab complains
+            % about small images (i.e. 33x33) but runs under protest
 
 result = main(1,mfilename,num_cpus_to_use,feature_transform,num_features_final,side_cut,set_type,num_train_samples,num_test_samples,...
     num_layers,...
@@ -79,9 +96,12 @@ result = main(1,mfilename,num_cpus_to_use,feature_transform,num_features_final,s
     transform_name,filter_name_2,num_scales,pooling_2,non_linearity_name,...
     transform_name,filter_name_3,num_scales,pooling_3,non_linearity_name,...
     %}
-    'shearlet0', 'shearlet0', 'shearlet0', ...
+    ... 'shearlet0', 'shearlet0', 'shearlet0',
+    wavelet_xform{:}, ...
     variance_threshold,c_start,c_step,c_end,g_start,g_step,g_end);
 
+    
 %% Save results for later analysis
-save('shearlet_feats.mat', 'result', '-v7.3');
+fn = sprintf('shearlet_feats_config%d.mat', ss_config);
+save(fn, 'result', 'ss_config', '-v7.3');
 
