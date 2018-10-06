@@ -40,6 +40,7 @@ Some information about these feature sets:
 | dim. reduction | none        | none        |  none       | SVM-weight    | 
 | scat. depth    | 1           |   2         |   1         | 1             | 
 | SVM            | linear      | linear      |  linear     | linear        | 
+| wavelet        | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      | 
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
