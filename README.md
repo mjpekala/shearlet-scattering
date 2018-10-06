@@ -20,27 +20,26 @@ I have also taken the liberty of downloading the software dependencies for frame
 The results reported below are for the default framenet shearlet configuration ("shearlet0"), a two-layer scattering network configuration similar to that provided by the framenet authors for MNIST with separable wavelets (although I omit dimension reduction and make a few other changes), and and linear SVM.  Note that I do not embark upon hyperparameter search (in part, do to limited time and computational resources) so the results below could possibly be improved upon.  Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 Another caveat is that we use MNIST images that are of size 31x31 (framenet default).  These may be on the small side for optimal processing with Shearlab.
 
-The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  The n=500,700 training example configurations are not reported, hence the n/a values.  I have also included some results from our experiments with Harr-type CDW (joint work with W. Czaja).
+The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  The n=500,700 training example configurations are not reported, hence the n/a values.  I have also included some results from our experiments with Haar-type CDW (joint work with W. Czaja).
 
 
-| # Training Examples | Shear-X-m2  | Haar-12-m1 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |
-|  Examples           |             |            |             |                    |
-|      :---:          |    :---:    |   :---:    | :---:       |  :---:             |
-|    300              |   12.44     |     11.93  |   11.95     |  11.61             |
-|    500              |   8.76      |            |   7.96      |   7.76             |
-|    700              |   6.85      |            |   6.4       |   7.37             |
-|    1000             |   5.91      |     2.6    |             |   5.78             |
-|    2000             |   4.23      |     1.8    |             |   3.87             |
-|    5000             |   2.96      |     1.4    |             |   2.7              |
+| # Training Examples | Shear-BW-m2 | Haar-12-m1 | Haar-12-m1-DR  |
+|      :---:          |    :---:    |   :---:    | :---:          |
+|    300              |   13.20     |    11.93   | 11.61          |
+|    500              |  7.59       |   6.59     | 6.73           |
+|    700              |  5.99       |    5.55    |  5.73          |
+|    1000             | 5.12        |     4.91   |   4.9          |
+|    2000             | 4.07        |     3.59   |   3.6          |
+|    5000             |  2.84       |     2.52   |   2.57         |
 
 Some information about these feature sets:
 
-|                | Shear-X-m2    |  Morlet-m2 | CHCDW-12-m1 | CHCDW-12-m1-DrSVM |
-|  :---:         |      :---:  |  :---:     |   :---:     | :---:             |
-|  # dims        |  9801       |            | 12288       |  9801             |
-| dim. reduction | none        |  PCA?      | none        | SVM weight (300)  |
-| scat. depth    | 3           |   3        | 2           | 2                 |
-| SVM runtime*   |             |            |             | ~7hrs             |
+|                | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
+|  :---:         |      :---:  |  :---:      |  :---:        |
+|  # dims        |  9801       |  12288      |  9801         |
+| dim. reduction | none        |  none       | SVM-weight    | 
+| scat. depth    | 2           |   1         | 1             | 
+| SVM            | linear      |  linear     | linear        | 
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
