@@ -15,7 +15,8 @@ addpath('/Users/mjp/Documents/Repos/github/dcwt-v2/src/3rd-party/libsvm/matlab')
 
 %% svm train/test ====================================================
 
-input_fn = fullfile('..', 'framenet', 'shearlet_feats.mat');
+%input_fn = fullfile('..', 'framenet', 'shearlet_feats.mat');
+input_fn = fullfile('..', 'framenet', 'shearlet_feats_config2.mat');
 [~,output_fn,~] = fileparts(input_fn);
 output_fn = [output_fn '_yhat.mat'];
 
@@ -28,6 +29,7 @@ train.x = result.train_feature_vectors;
 train.y = result.dataset_mnist.train_labels_;
 test.x = result.test_feature_vectors;
 test.y = result.dataset_mnist.test_labels_;
+
 
 figure; 
 subplot(1,2,1); histogram(train.y); title('train labels');
