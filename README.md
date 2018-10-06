@@ -23,18 +23,19 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  The n=500,700 training example configurations are not reported, hence the n/a values.  I have also included some results from our experiments with Harr-type CDW (joint work with W. Czaja).
 
 
-| # Training Examples | Shearlet  |  Morlet-m2 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |  CHCDW-12-m1-DrRNG |
-|      :---:          |    :---:  |   :---:    | :---:       |  :---:             | :---:              |
-|    300              |   12.44   |     5.6    |   11.95     |  11.61             |  13.05             |
-|    500              |   8.76    |            |   7.96      |   7.76             |    8.1             |
-|    700              |   6.85    |            |   6.4       |   7.37             |                    |
-|    1000             |   5.91    |     2.6    |             |   5.78             |                    |
-|    2000             |   4.23    |     1.8    |             |   3.87             |                    |
-|    5000             |   2.96    |     1.4    |             |   2.7              |                    |
+| # Training Examples | Shear-X-m2  | Haar-12-m1 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |
+|  Examples           |             |            |             |                    |
+|      :---:          |    :---:    |   :---:    | :---:       |  :---:             |
+|    300              |   12.44     |     11.93  |   11.95     |  11.61             |
+|    500              |   8.76      |            |   7.96      |   7.76             |
+|    700              |   6.85      |            |   6.4       |   7.37             |
+|    1000             |   5.91      |     2.6    |             |   5.78             |
+|    2000             |   4.23      |     1.8    |             |   3.87             |
+|    5000             |   2.96      |     1.4    |             |   2.7              |
 
 Some information about these feature sets:
 
-|                | Shearlet    |  Morlet-m2 | CHCDW-12-m1 | CHCDW-12-m1-DrSVM |
+|                | Shear-X-m2    |  Morlet-m2 | CHCDW-12-m1 | CHCDW-12-m1-DrSVM |
 |  :---:         |      :---:  |  :---:     |   :---:     | :---:             |
 |  # dims        |  9801       |            | 12288       |  9801             |
 | dim. reduction | none        |  PCA?      | none        | SVM weight (300)  |
