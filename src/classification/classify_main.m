@@ -16,7 +16,8 @@ addpath('/Users/mjp/Documents/Repos/github/dcwt-v2/src/3rd-party/libsvm/matlab')
 %% svm train/test ====================================================
 
 input_fn = fullfile('..', 'framenet', 'shearlet_feats.mat');
-output_fn = 'results_nocv.mat';
+[~,output_fn,~] = fileparts(input_fn);
+output_fn = [output_fn '_yhat.mat'];
 
 if ~exist(input_fn, 'file')
   error('you must run scattering transform feature extractor first!');
