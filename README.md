@@ -25,12 +25,12 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 
 | # Training Examples | Shearlet  |  Morlet-m2 | CHCDW-12-m1 |  CHCDW-12-m1-DrSVM |  CHCDW-12-m1-DrRNG |
 |      :---:          |    :---:  |   :---:    | :---:       |  :---:             | :---:              |
-|    300              |   12.44   |     5.6    |   11.95     |  11.74             |  13.05             |
-|    500              |   8.76    |            |   7.96      |   7.92             |    8.1             |
-|    700              |   6.85    |            |   6.4       |   7.40             |                    |
-|    1000             |   5.91    |     2.6    |             |   5.95             |                    |
-|    2000             |   4.23    |     1.8    |             |   3.79             |                    |
-|    5000             |   2.96    |     1.4    |             |                    |                    |
+|    300              |   12.44   |     5.6    |   11.95     |  11.61             |  13.05             |
+|    500              |   8.76    |            |   7.96      |   7.76             |    8.1             |
+|    700              |   6.85    |            |   6.4       |   7.37             |                    |
+|    1000             |   5.91    |     2.6    |             |   5.78             |                    |
+|    2000             |   4.23    |     1.8    |             |   3.87             |                    |
+|    5000             |   2.96    |     1.4    |             |   2.7              |                    |
 
 Some information about these feature sets:
 
@@ -39,6 +39,7 @@ Some information about these feature sets:
 |  # dims        |  9801       |            | 12288       |  9801             |
 | dim. reduction | none        |  PCA?      | none        | SVM weight (300)  |
 | scat. depth    | 3           |   3        | 2           | 2                 |
+| SVM runtime*   |             |            |             | ~7hrs             |
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
