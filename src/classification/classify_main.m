@@ -16,7 +16,7 @@ addpath('/Users/mjp/Documents/Repos/github/dcwt-v2/src/3rd-party/libsvm/matlab')
 %% svm train/test ====================================================
 
 input_fn = fullfile('..', 'framenet', 'shearlet_feats.mat');
-output_fn = 'results.mat';
+output_fn = 'results_nocv.mat';
 
 if ~exist(input_fn, 'file')
   error('you must run scattering transform feature extractor first!');
@@ -46,8 +46,13 @@ assert(max(train.x(:)) <= 1 + 1e-9);
 
 svm_info.n_train = [300, 500, 700, 1000, 2000, 5000];
 svm_info.acc = nan * ones(size(svm_info.n_train));
-svm_info.y_hat = nan * ones(numel(test.y), length(svm_info.n_train));
+svm_info.y_hat = nan * ones(numel(test.y), ...
+                            length(svm_info.n_train));
 
+opts = train_libsvm();
+opts.svm_kernel = meta.svm_kernel;
+opts.n_folds = 3;      % to match Haar experiments
+opts.max_depth = 0;
 
 start_time = tic;
 
@@ -65,13 +70,12 @@ for ii = 1:length(svm_info.n_train)
         mfilename, size(x_train,1), size(x_train,2));
 
     % train (+ hyperparameter selection)
-    opts = train_libsvm();
-    opts.svm_kernel = meta.svm_kernel;
-    opts.n_folds = 5;
-    opts.max_depth = 0;
     train_result = train_libsvm(x_train, y_train, opts);
-
-    fprintf('[%s] Train accuracy %0.2f\n', mfilename, train_result.acc);
+    
+    if ii == 1             % re-use hypers (to match Haar experiments)
+      opts.n_folds = 0;
+      opts.c_range = train_result.hypers(1);
+    end
 
     % == TEST ==
     x_test = test.x;
