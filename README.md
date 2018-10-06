@@ -23,23 +23,23 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 The table below also includes MNIST results taken from Bruna & Mallat "Invariant Scattering Convolution Networks," 2013.  Note that these numbers are for a nonlinear SVM and the scattering features had undergone dimension reduction; however, I (mjp) was able to reproduce very similar performance without dimension reduction and with the same linear SVM.  The n=500,700 training example configurations are not reported, hence the n/a values.  I have also included some results from our experiments with Haar-type CDW (joint work with W. Czaja).
 
 
-| # Training Examples | Shear-BW-m2 | Haar-12-m1 | Haar-12-m1-DR  |
-|      :---:          |    :---:    |   :---:    | :---:          |
-|    300              |   13.20     |    11.93   | 11.61          |
-|    500              |  7.59       |   6.59     | 6.73           |
-|    700              |  5.99       |    5.55    |  5.73          |
-|    1000             | 5.12        |     4.91   |   4.9          |
-|    2000             | 4.07        |     3.59   |   3.6          |
-|    5000             |  2.84       |     2.52   |   2.57         |
+| # Training Examples | Shear-BW-m1 | Shear-BW-m2 | Haar-12-m1 | Haar-12-m1-DR  |
+|      :---:          |   :---:     |    :---:    |   :---:    | :---:          |
+|    300              |   21.2      |   13.20     |    11.93   | 11.61          |
+|    500              |   13.63     |  7.59       |   6.59     | 6.73           |
+|    700              |   10.97     |   5.99      |    5.55    |  5.73          |
+|    1000             |   10.12     |  5.12       |     4.91   |   4.9          |
+|    2000             |   8.27      |  4.07       |     3.59   |   3.6          |
+|    5000             |   6.28      |  2.84       |     2.52   |   2.57         |
 
 Some information about these feature sets:
 
-|                | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
-|  :---:         |      :---:  |  :---:      |  :---:        |
-|  # dims        |  9801       |  12288      |  9801         |
-| dim. reduction | none        |  none       | SVM-weight    | 
-| scat. depth    | 2           |   1         | 1             | 
-| SVM            | linear      |  linear     | linear        | 
+|                | Shear-BW-m1 | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
+|  :---:         | :---:       |     :---:   |  :---:      |  :---:        |
+|  # dims        | 1089        | 9801        |  12288      |  9801         |
+| dim. reduction | none        | none        |  none       | SVM-weight    | 
+| scat. depth    | 1           |   2         |   1         | 1             | 
+| SVM            | linear      | linear      |  linear     | linear        | 
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
