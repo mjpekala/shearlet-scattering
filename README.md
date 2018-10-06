@@ -34,13 +34,13 @@ The table below also includes MNIST results taken from Bruna & Mallat "Invariant
 
 Some information about these feature sets:
 
-|                | Shear-BW-m1 | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
-|  :---:         | :---:       |     :---:   |  :---:      |  :---:        |
-|  # dims        | 1089        | 9801        |  12288      |  9801         |
-| dim. reduction | none        | none        |  none       | SVM-weight    | 
-| scat. depth    | 1           |   2         |   1         | 1             | 
-| SVM            | linear      | linear      |  linear     | linear        | 
-| wavelet        | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      | 
+|                     | Shear-BW-m1 | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
+|  :---:              | :---:       |     :---:   |  :---:      |  :---:        |
+|  # dimensions       | 1089        | 9801        |  12288      |  9801         |
+| dim. reduction      | none        | none        |  none       | SVM-weight    | 
+| Scattering depth    | 1           |   2         |   1         | 1             | 
+| SVM                 | linear      | linear      |  linear     | linear        | 
+| wavelet             | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      | 
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
