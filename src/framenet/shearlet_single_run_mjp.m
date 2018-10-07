@@ -52,7 +52,7 @@ set_type = 1;               % 1 - get balanced test set, starting from 1st index
 ss_config = 1;
 
 switch(ss_config)
-  case 1
+  case 2
     fprintf('\n           --= TWO LAYER SCATTERING =--\n');
     num_layers = 2;
     pooling_1 = '';
@@ -60,8 +60,8 @@ switch(ss_config)
                                  %      I believe this is 2x2 max pooling.
     wavelet_xform = {'shearlet0', 'shearlet0', 'shearlet0'};
 
-  case 2
-    % this is basically what we do for Haar
+  case 1
+    % this is basically what we do by default for CHCDW
     fprintf('\n           --= ONE LAYER SCATTERING =--\n');
     num_layers = 1;
     pooling_1 = '';
