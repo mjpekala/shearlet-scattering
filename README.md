@@ -59,8 +59,8 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 |    500              |   6.59         | 6.73             |   7.61                  |              |
 |    700              |    5.55        |  5.73            |   6.21                  |              |
 |    1000             |     4.91       |   4.9            |   4.91                  |              |
-|    2000             |     3.59       |   3.6            |                         |              |
-|    5000             |     2.52       |   2.57           |                         |              |
+|    2000             |     3.59       |   3.6            |   3.74                  |              |
+|    5000             |     2.52       |   2.57           |   *                     |              |
 |  :---:              | :---:          |  :---:           |  :---:                  |  :---:       |
 | Framework           | BFT            | BFT              |  BFT                    |  BFT         |
 | SVM                 | linear         | linear           | linear                  |  linear      |
@@ -74,6 +74,8 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 | ex post facto DR    | none           | **SVM-weight**   |  none                   |  none        |
 |  # dimensions       | 12288          |  9801            |  46272                  | 23808        |
 |                     | (1+3x5)x12x8x8 |                  | (1+3x5+(3x5)^2)x12x4x4  |              |
+
+* = Omitted due to time constraints and high probability of being uninteresting.
 
 1.  Without in-situ dimension reduction (DR) the 8x8x12 CHCDW does not fit into memory on my laptop for m=2 for all of MNIST.
 2.  I could address 1 by chunking the data sets but (a) this ripples through all of my code, and (b) it is just not the right approach IMO.
@@ -114,7 +116,7 @@ Some observations:
 ## Blurred MNIST
 Here we investigate the impact of Gaussian blurring on some of the aforementioned wavelet/scattering configurations.
 
-| MNIST # Train       |  Morlet-6-a    | CHCDW-12-a |
+| MNIST # Train       |BLUR-Morlet-6-a | BLUR-CHCDW-12-a |
 |      :---:          |   :---:        |  :---:     |
 |    300              |   26.70        |  27.90     |
 |    500              |   19.20        |  19.42     |
