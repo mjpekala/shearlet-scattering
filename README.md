@@ -34,7 +34,7 @@ Values reported in the table are *error rates*, aggregated across all 10 classes
 |    2000       |   8.27      |  4.07       |  3.08        | 2.03         |
 |    5000       |   6.28      |  2.84       |  2.11        | 1.41         |
 |  :---:              | :---:       |     :---:   |   :---:       | :---:        |
-| Framework           | B&W         | B&W         |   ScatNet     | ScatNet      |
+| Framework           | FrameNet         | FrameNet         |   ScatNet     | ScatNet      |
 | SVM                 | linear      | linear      |   linear      | linear       |
 | Scattering order    | 1           |   2         |  1            | 2            |
 | wavelet             | Shearlet    | Shearlet    |   Morlet      | Morlet       |
