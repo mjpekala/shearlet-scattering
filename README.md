@@ -23,24 +23,24 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 I have also included some results from our experiments with Haar-type CDW (joint work with W. Czaja).
 
 
-| MNIST # Train | FrameNet-m1 | FrameNet-m2 | Haar-12-m1 | Haar-12-m1-DR  | ScatNet-6-m2 |
-|      :---:    |   :---:     |    :---:    |   :---:    | :---:          |  :---:       |
-|    300        |   21.2      |   13.20     |    11.93   | 11.61          |  8.67        |
-|    500        |   13.63     |  7.59       |   6.59     | 6.73           |  3.79        |
-|    700        |   10.97     |   5.99      |    5.55    |  5.73          |  3.23        |
-|    1000       |   10.12     |  5.12       |     4.91   |   4.9          |  2.70        |
-|    2000       |   8.27      |  4.07       |     3.59   |   3.6          |  2.03        |
-|    5000       |   6.28      |  2.84       |     2.52   |   2.57         |  1.41        |
+| MNIST # Train | FrameNet-m1 | FrameNet-m2 | Haar-12-m1 | Haar-12-m1-DR  | ScatNet-6-m1 | ScatNet-6-m2 |
+|      :---:    |   :---:     |    :---:    |   :---:    | :---:          |  :---:       |  :---:       |
+|    300        |   21.2      |   13.20     |    11.93   | 11.61          |  7.69        | 8.67         |
+|    500        |   13.63     |  7.59       |   6.59     | 6.73           |  5.85        | 3.79         |
+|    700        |   10.97     |   5.99      |    5.55    |  5.73          |  5.03        | 3.23         |
+|    1000       |   10.12     |  5.12       |     4.91   |   4.9          |  4.42        | 2.70         |
+|    2000       |   8.27      |  4.07       |     3.59   |   3.6          |  3.08        | 2.03         |
+|    5000       |   6.28      |  2.84       |     2.52   |   2.57         |  2.11        | 1.41         |
 
 Some information about these feature sets:
 
-|                     | FrameNet-m1 | FrameNet-m2 |  Haar-12-m1 | Haar-12-m1-DR | ScatNet-6-m2 |
-|  :---:              | :---:       |     :---:   |  :---:      |  :---:        |  :---:       |
-|  # dimensions       | 1089        | 9801        |  12288      |  9801         | 3856         |
-| dim. reduction      | none        | none        |  none       | SVM-weight    | none         |
-| Scattering order    | 1           |   2         |   1         | 1             |  2           |
-| SVM                 | linear      | linear      |  linear     | linear        |  linear      |
-| wavelet             | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      |  Morlet      |
+|                     | FrameNet-m1 | FrameNet-m2 |  Haar-12-m1 | Haar-12-m1-DR | ScatNet-6-m1 | ScatNet-6-m2 |
+|  :---:              | :---:       |     :---:   |  :---:      |  :---:        |  :---:       | :---:        |
+|  # dimensions       | 1089        | 9801        |  12288      |  9801         |  400         | 3856         |
+| dim. reduction      | none        | none        |  none       | SVM-weight    | none         | none         |
+| Scattering order    | 1           |   2         |   1         | 1             |  1           | 2            |
+| SVM                 | linear      | linear      |  linear     | linear        |  linear      | linear       |
+| wavelet             | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      |  Morlet      | Morlet       |
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
