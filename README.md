@@ -43,6 +43,9 @@ Values reported in the table are **error rates**, aggregated across all 10 class
 | dim. reduction      | none        | none        |  none         | none         |
 |  # dimensions       | 1089        | 9801        |   400         | 3856         |
 
+Notes:
+1. FrameNet provides state-of-the art performance (comparable with ScatNet+Morlet-6) for MNIST when using separable wavelets and a full training data set (see their paper).  So we believe the FrameNet architecture & theory is sound; our experiments here are explicitly to explore properties of Shearlet scatterings not to say anything about FrameNet as a whole vs. another scattering architecture.
+2.  Similarly, our goal is not to try to get best possible overall performance on MNIST, but to as fairly as possible compare different CDW wavelets in scattering context.  Hence the linear svm and minimal dimension reduction.  Otherwise, interpretation becomes even more difficult than it already is.  We refer reader to FrameNet and ScatNet papers for what is possible when all measures are taken to get best possible results.
 
 ## Apples-to-Apples (-ish) Comparison
 
@@ -71,13 +74,9 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 |  # dimensions       | 12288          |  9801            |  1600       |  1984       | 3904        |
 |                     | (1+3x5)x12x8x8 |                  | (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8 |
 
-In this simple network, the CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
-1. layer 1: 8 * 8 * 12 = 768
-2. layer 2: (8*8*12) * (3*log(32)) = 11520
-
-Notes:
-1. FrameNet provides state-of-the art performance (comparable with ScatNet+Morlet-6) for MNIST when using separable wavelets and a full training data set (see their paper).  So we believe the FrameNet architecture & theory is sound; our experiments here are explicitly to explore properties of Shearlet scatterings not to say anything about FrameNet as a whole vs. another scattering architecture.
-2.  Similarly, our goal is not to try to get best possible overall performance on MNIST, but to as fairly as possible compare different CDW wavelets in scattering context.  Hence the linear svm and minimal dimension reduction.  Otherwise, interpretation becomes even more difficult than it already is.  We refer reader to FrameNet and ScatNet papers for what is possible when all measures are taken to get best possible results.
+Some observations:
+1. For the 6-direction Morlet wavelet, it doesn't seem to make a huge difference whether we use 4 or 5 scales.
+2. For the Morlet wavelet, the 12 direction variant actually seems worse than the 6 direction variant. Perhaps for MNIST we have reached a point of diminishing returns for the number of angles and are just adding difficulty to the subsequent classification problem? 
 
 ## References
 
