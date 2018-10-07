@@ -67,9 +67,9 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 | Scattering order    |  1             | 1                |  1          | 1           | 1           |  1          |
 | wavelet             | CHCDW-12       | CHCDW-12         |  Morlet     | Morlet      | Morlet      | Morlet      |
 | "Spatial" Dims      | 8x8            |  8x8             |  8x8        |  8x8        | 8x8         |  **4x4**    |
-| Wavelet Scales (J)  |  5             |  5               |  **4**      |  **5**      | 5           |   4         |
+| Wavelet Scales (J)  |  5             |  5               |  4          |  **5**      | 5           |   4         |
 | Multi-wavelets (L)  | 3              |  3               |  1          |  1          | 1           |   1         |
-| "Directions"        | 12             |  12              |  6          |  6          | 12          |    6        |
+| "Directions"        | 12             |  12              |  6          |  6          | **12**      |    6        |
 | dim. reduction      | none           | SVM-weight       | none        |  none       | none        |  none       |
 |  # dimensions       | 12288          |  9801            |  1600       |  1984       | 3904        |  400        |
 |                     | (1+3x5)x12x8x8 |                  | (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8| (1+4x6)x4x4 |
