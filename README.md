@@ -95,7 +95,7 @@ Here we investigate the impact of Gaussian blurring on some of the aforementione
 | Framework           | BFT            |  BFT       |
 | SVM                 | linear         | linear     |
 | Scattering order    |  1             | 1          |
-| wavelet             | Morlet         | Morlet     |
+| wavelet             | Morlet         | CHCDW      |
 | "Spatial" Dims      | 8x8            |  8x8       |
 | Wavelet Scales (J)  |  4             |  5         |
 | Multi-wavelets (L)  | 1              |   3        |
