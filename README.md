@@ -66,7 +66,7 @@ Some attempts at a more "apples-to-apples" comparison by placing wavelets by wit
 | "Directions"        | 12             |  12            |  6             |  6             |
 | dim. reduction      | none           | SVM-weight     | none           |  none          |
 |  # dimensions       | 12288          |  9801          |  1600          |  1984          |
-|                     | (1+3*5)*8*8*12 |                | (1+6*4)*8*8    | (1+6*4)*8*8    |
+|                     | (1+3x5)x8x8x12 |                | (1+6x4)x8x8    | (1+6x4)x8x8    |
 
 In this simple network, the CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
