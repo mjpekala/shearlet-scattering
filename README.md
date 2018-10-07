@@ -20,33 +20,55 @@ I have also taken the liberty of downloading the software dependencies for frame
 The results reported below are for the default framenet shearlet configuration ("shearlet0"), a two-layer scattering network configuration similar to that provided by the framenet authors for MNIST with separable wavelets (although I omit dimension reduction and make a few other changes), and and linear SVM.  Note that I do not embark upon hyperparameter search (in part, do to limited time and computational resources) so the results below could possibly be improved upon.  Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 Another caveat is that we use MNIST images that are of size 31x31 (framenet default).  These may be on the small side for optimal processing with Shearlab.
 
-I have also included some results from our experiments with Haar-type CDW using the "Complete Product" (CP) (joint work with W. Czaja).
+Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these parameters.
 
 
-| MNIST # Train | FrameNet-m1 | FrameNet-m2 | CP-H12-m1  | CP-H12-m1-DR   | ScatNet-6-m1 | ScatNet-6-m2 | CP-M6-m1 |
-|      :---:    |   :---:     |    :---:    |   :---:    | :---:          |  :---:       |  :---:       | :---:    |
-|    300        |   21.2      |   13.20     |    11.93   | 11.61          |  7.69        | 8.67         | 9.34     |
-|    500        |   13.63     |  7.59       |   6.59     | 6.73           |  5.85        | 3.79         | 4.76     |
-|    700        |   10.97     |   5.99      |    5.55    |  5.73          |  5.03        | 3.23         | 4.12     |
-|    1000       |   10.12     |  5.12       |     4.91   |   4.9          |  4.42        | 2.70         | 3.35     |
-|    2000       |   8.27      |  4.07       |     3.59   |   3.6          |  3.08        | 2.03         | 2.45     |
-|    5000       |   6.28      |  2.84       |     2.52   |   2.57         |  2.11        | 1.41         | 1.71     |
+| MNIST # Train | FrameNet-m1 | FrameNet-m2 | ScatNet-6-m1 | ScatNet-6-m2 |
+|      :---:    |   :---:     |    :---:    |  :---:       |  :---:       |
+|    300        |   21.2      |   13.20     |  7.69        | 8.67         |
+|    500        |   13.63     |  7.59       |  5.85        | 3.79         |
+|    700        |   10.97     |   5.99      |  5.03        | 3.23         |
+|    1000       |   10.12     |  5.12       |  4.42        | 2.70         |
+|    2000       |   8.27      |  4.07       |  3.08        | 2.03         |
+|    5000       |   6.28      |  2.84       |  2.11        | 1.41         |
 
-Some information about these feature sets:
 
-|                     | FrameNet-m1 | FrameNet-m2 |  CP-12-m1    | CP-12-m1-DR    | ScatNet-6-m1 | ScatNet-6-m2 | CP-M6-m1 |
-|  :---:              | :---:       |     :---:   |  :---:       |  :---:         |  :---:       | :---:        | :---:    |
-| Framework           | FrameNet    | FrameNet    |  CP          |  CP            |  ScatNet     | ScatNet      |  CP      |
-| SVM                 | linear      | linear      |  linear      | linear         |  linear      | linear       | linear   |
-| Scattering order    | 1           |   2         |   1          | 1              |  1           | 2            |  1       |
-| wavelet             | Shearlet    | Shearlet    |  CHCDW-12    | CHCDW-12       |  Morlet      | Morlet       |  Morlet  |
-| Spatial Dims        |             |             |  8x8         |  8x8           |              | 8x8          |  8x8     |
-| Wavelet Scales      |             |             |   5          |  5             |   4          |  4           |  4       |
-| "Directions"        |             |             |   12         |  12            |   6          |  6           |  6       |
-| dim. reduction      | none        | none        |  none        | SVM-weight     | none         | none         | none     |
-|  # dimensions       | 1089        | 9801        |  12288       |  9801          |  400         | 3856         |  1600    |
+|                     | FrameNet-m1 | FrameNet-m2 |  ScatNet-6-m1 | ScatNet-6-m2 |
+|  :---:              | :---:       |     :---:   |   :---:       | :---:        |
+| Framework           | B&W         | B&W         |   ScatNet     | ScatNet      |
+| SVM                 | linear      | linear      |   linear      | linear       |
+| Scattering order    | 1           |   2         |  1            | 2            |
+| wavelet             | Shearlet    | Shearlet    |   Morlet      | Morlet       |
+| Wavelet Scales      |             |             |   4           |  4           | 
+| "Directions"        |             |             |   6           |  6           |
+| dim. reduction      | none        | none        |  none         | none         |
+|  # dimensions       | 1089        | 9801        |   400         | 3856         |
 
-The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
+
+Some attempts at a more "apples-to-apples" comparison by placing wavelets by within a uniform scattering ; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths:
+
+| MNIST # Train | CHCDW-12-m1  | CHCDW-12-m1-DR   |  Morlet-6-m1-j4 | Morlet-6-m1-j5 |
+|      :---:    |   :---:      | :---:            |  :---:       | :---:             |
+|    300        |    11.93     | 11.61            |  9.34        | 10.21             |
+|    500        |   6.59       | 6.73             |  4.76        | 5.16              |
+|    700        |    5.55      |  5.73            |  4.12        | 4.36              |
+|    1000       |     4.91     |   4.9            |  3.35        | 3.61              |
+|    2000       |     3.59     |   3.6            |  2.45        | 2.48              |
+|    5000       |     2.52     |   2.57           |  1.71        | 1.74              |
+
+|                     | CHCDW-12-m1    | CHCDW-12-m1-DR | Morlet-6-m1-j4 | Morlet-6-m1-j5 |
+|  :---:              | :---:          |  :---:         | :---:          |  :---:         |
+| SVM                 | linear         | linear         | linear         | linear         |
+| Scattering order    |  1             | 1              |  1             | 1              |
+| wavelet             | CHCDW-12       | CHCDW-12       |  Morlet        | Morlet         |
+| Spatial Dims        | 8x8            |  8x8           |  8x8           |  8x8           |
+| Wavelet Scales      |  5             |  5             |  4             |  5             |
+| "Directions"        | 12             |  12            |  6             |  6             |
+| dim. reduction      | none           | SVM-weight     | none           |  none          |
+|  # dimensions       | 12288          |  9801          |  1600          |  1984          |
+|                     | (1+3*5)*8*8*12 |                | (1+6*4)*8*8    | (1+6*4)*8*8    |
+
+In this simple network, the CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
 2. layer 2: (8*8*12) * (3*log(32)) = 11520
 
