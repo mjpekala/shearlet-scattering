@@ -1,6 +1,9 @@
 % A modified version of sample_single_run.m, with the difference that we
 % use shearlets instead of haar wavelets.
 %
+%  NOTE TO SELF: for blurring experiments, it was quicker to hack
+%  directly the Dataset_MNIST.m file.  See that function for 
+%  where this can be enabled/disabled manually.
 
 % mjp, 2018
 
@@ -46,13 +49,14 @@ set_type = 1;               % 1 - get balanced test set, starting from 1st index
 %      This is not a framenet limitation, but more a property of scattering
 %      transforms themselves.  Our CHCDW transform has the same
 %      limitations.
-ss_config = 2;
+ss_config = 1;
 
 switch(ss_config)
   case 1
+    fprintf('\n           --= TWO LAYER SCATTERING =--\n');
     num_layers = 2;
     pooling_1 = '';
-    pooling_2 = 'p m 2 2';       % MJP: taken directy from haar experiment script.
+    pooling_2 = 'p m 2 2';       % MJP: taken directy from W&B experiment script.
                                  %      I believe this is 2x2 max pooling.
     wavelet_xform = {'shearlet0', 'shearlet0', 'shearlet0'};
 

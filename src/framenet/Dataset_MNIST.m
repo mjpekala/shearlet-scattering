@@ -65,6 +65,10 @@ classdef Dataset_MNIST < handle
             image_size = sqrt(size(mnist_training_images,1)); % will be 28 always
             for i=1:length(ds.train_indices_)
                 ds.train_images_{i} = single(reshape(mnist_training_images(:,ds.train_indices_(i)),image_size,image_size));
+                if false % TEMP MJP mjp
+                    ds.train_images_{i} = imgaussfilt(ds.train_images_{i}, 5);
+                    if i == 1, fprintf('\nUSING BLURRED IMAGES!!!\n'); end
+                end
             end
             % Take the labels for the corresponding training images
             ds.train_labels_ = mnist_training_labels(ds.train_indices_,1);         
@@ -90,6 +94,10 @@ classdef Dataset_MNIST < handle
             image_size = sqrt(size(mnist_test_images,1)); % will be 28 always
             for i=1:length(ds.test_indices_)
                 ds.test_images_{i} = single(reshape(mnist_test_images(:,ds.test_indices_(i)),image_size,image_size));
+                if false  % TEMP MJP mjp
+                    ds.test_images_{i} = imgaussfilt(ds.test_images_{i}, 5); 
+                    if i == 1, warning('\nUSING BLURRED IMAGES!!!\n'); end
+                end
             end
             % Take the labels for the corresponding testing images
             ds.test_labels_ = mnist_test_labels(ds.test_indices_,1);         
