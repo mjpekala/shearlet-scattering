@@ -46,7 +46,7 @@ Values reported in the table are **error rates**, aggregated across all 10 class
 
 ## Apples-to-Apples (-ish) Comparison
 
-Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a similar scattering frameworks; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths.  The idea here is to enforce more consistency in the wavelet comparison by making the sowpass filter uniform.
+Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a common scattering framework; here we use a simple scattering tree with the same low-pass filters and no pruning based on energy decreasing paths.  The idea here is to enforce more consistency in the wavelet comparison by making the sowpass filter uniform.
 
 | MNIST # Train | CHCDW-12-m1  | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b | Morlet-12-a |
 |      :---:    |   :---:      | :---:            |  :---:      | :---:      | :---:       |
