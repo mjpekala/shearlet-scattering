@@ -47,20 +47,20 @@ Notes:
 1. FrameNet provides state-of-the art performance (comparable with ScatNet+Morlet-6) for MNIST when using separable wavelets and a full training data set (see their paper).  So we believe the FrameNet architecture & theory is sound; our experiments here are explicitly to explore properties of Shearlet scatterings not to say anything about FrameNet as a whole vs. another scattering architecture.
 2.  Similarly, our goal is not to try to get best possible overall performance on MNIST, but to as fairly as possible compare different CDW wavelets in scattering context.  Hence the linear svm and minimal dimension reduction.  Otherwise, interpretation becomes even more difficult than it already is.  We refer reader to FrameNet and ScatNet papers for what is possible when all measures are taken to get best possible results.
 
-## Apples-to-Apples (-ish) Comparison
+## Apples-to-Apples (-ish) Comparison on MNIST
 
 Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a common scattering framework.
 In particular, we use a simple scattering tree with the same low-pass filters and no pruning based on energy decreasing paths (aka the "Brute Force Tree" (BFT)).  
 The idea here is to enforce more consistency in the wavelet comparison by making the lowpass filter uniform.
 
-| MNIST # Train       | CHCDW-12-m1    | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b  | Morlet-12-a | Morlet-6-c  | Morlet-6-d |
-|      :---:          |   :---:        | :---:            |  :---:      | :---:       | :---:       | :---:       | :---:      |
-|    300              |    11.93       | 11.61            |  9.34       | 10.21       |  11.23      |  10.07      | 
-|    500              |   6.59         | 6.73             |  4.76       | 5.16        | 5.78        |  5.62       |
-|    700              |    5.55        |  5.73            |  4.12       | 4.36        |  5.05       |  4.73       |
-|    1000             |     4.91       |   4.9            |  3.35       | 3.61        |   4.01      |  3.99       |
-|    2000             |     3.59       |   3.6            |  2.45       | 2.48        |  2.74       | 2.79        |
-|    5000             |     2.52       |   2.57           |  1.71       | 1.74        |  1.94       | 1.9         |
+| MNIST # Train       | CHCDW-12-m1    | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b  | Morlet-12-a | Morlet-6-c  | Morlet-6-d  |
+|      :---:          |   :---:        | :---:            |  :---:      | :---:       | :---:       | :---:       | :---:       |
+|    300              |    11.93       | 11.61            |  9.34       | 10.21       |  11.23      |  10.07      | 9.63        |
+|    500              |   6.59         | 6.73             |  4.76       | 5.16        | 5.78        |  5.62       | 5.07        |
+|    700              |    5.55        |  5.73            |  4.12       | 4.36        |  5.05       |  4.73       | 4.41        |
+|    1000             |     4.91       |   4.9            |  3.35       | 3.61        |   4.01      |  3.99       | 3.74        |
+|    2000             |     3.59       |   3.6            |  2.45       | 2.48        |  2.74       | 2.79        | 2.60        |
+|    5000             |     2.52       |   2.57           |  1.71       | 1.74        |  1.94       | 1.9         | 1.79        |
 |  :---:              | :---:          |  :---:           | :---:       |  :---:      | :---:       | :---:       | :---:       |
 | Framework           | BFT            | BFT              |   BFT       | BFT         | BFT         | BFT         |  BFT        |
 | SVM                 | linear         | linear           | linear      | linear      | linear      |  linear     | linear      |
@@ -79,6 +79,29 @@ Some observations:
 2. For the Morlet wavelet, the 12 direction variant actually seems worse than the 6 direction variant. Perhaps for MNIST we have reached a point of diminishing returns for the number of angles and are just adding difficulty to the subsequent classification problem?   Note this is also consistent with what I had observed for regression with MNIST and Morlet (even though we used global averaging in that experiment)!  Nice that the two at least seem to agree...
 3. The added dimensionality (due to 8x8 downsampling?) seems to be providing an advantage relatve to the ScatNet m=1 case.
 4.  Without some on-the-fly dimension reduction (e.g. pruning frequency decreasing paths) the growth of # dimensions for CHCDW is like (1 + LxJ + (LxJ)^2 + ...)*T, where T = DxDx12.
+
+## Blurred MNIST
+Here we investigate the impact of Gaussian blurring on some of the aforementioned wavelet/scattering configurations.
+
+| MNIST # Train       |  Morlet-6-a    | CHCDW-12-a |
+|      :---:          |   :---:        |  :---:     |
+|    300              |   26.70        |
+|    500              |   19.20        |
+|    700              |   15.41        |
+|    1000             |   13.36        |
+|    2000             |   10.40        |
+|    5000             |   7.56         |
+|  :---:              | :---:          |  :---:    |
+| Framework           | BFT            |  BFT      |
+| SVM                 | linear         | linear    |
+| Scattering order    |  1             | 1         |
+| wavelet             | Morlet         | Morlet    |
+| "Spatial" Dims      | 8x8            |  8x8      |
+| Wavelet Scales (J)  |  4             |  5        |
+| Multi-wavelets (L)  | 1              |   3       |
+| "Directions"        | 6              |  12       |
+| dim. reduction      | none           |  none     |
+|  # dimensions       | 1600           | 12288     |
 
 ## References
 
