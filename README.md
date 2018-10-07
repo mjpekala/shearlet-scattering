@@ -36,14 +36,15 @@ Some information about these feature sets:
 
 |                     | FrameNet-m1 | FrameNet-m2 |  CP-12-m1    | CP-12-m1-DR    | ScatNet-6-m1 | ScatNet-6-m2 | CP-M6-m1 |
 |  :---:              | :---:       |     :---:   |  :---:       |  :---:         |  :---:       | :---:        | :---:    |
-|  # dimensions       | 1089        | 9801        |  12288       |  9801          |  400         | 3856         |  1600    |
-| dim. reduction      | none        | none        |  none        | SVM-weight     | none         | none         | none     |
-| Scattering order    | 1           |   2         |   1          | 1              |  1           | 2            |  1       |
-| SVM                 | linear      | linear      |  linear      | linear         |  linear      | linear       | linear   |
-| wavelet             | Shearlet    | Shearlet    |  CHCDW-12    | CHCDW-12       |  Morlet      | Morlet       |  Morlet  |
 | Framework           | FrameNet    | FrameNet    |  CP          |  CP            |  ScatNet     | ScatNet      |  CP      |
+| SVM                 | linear      | linear      |  linear      | linear         |  linear      | linear       | linear   |
+| Scattering order    | 1           |   2         |   1          | 1              |  1           | 2            |  1       |
+| wavelet             | Shearlet    | Shearlet    |  CHCDW-12    | CHCDW-12       |  Morlet      | Morlet       |  Morlet  |
 | Spatial Dims        |             |             |  8x8         |  8x8           |              | 8x8          |  8x8     |
 | Wavelet Scales      |             |             |   5          |  5             |   4          |  4           |  4       |
+| "Directions"        |             |             |   12         |  12            |   6          |  6           |  6       |
+| dim. reduction      | none        | none        |  none        | SVM-weight     | none         | none         | none     |
+|  # dimensions       | 1089        | 9801        |  12288       |  9801          |  400         | 3856         |  1600    |
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
