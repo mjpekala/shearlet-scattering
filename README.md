@@ -20,7 +20,9 @@ I have also taken the liberty of downloading the software dependencies for frame
 The results reported below are for the default framenet shearlet configuration ("shearlet0"), a two-layer scattering network configuration similar to that provided by the framenet authors for MNIST with separable wavelets (although I omit dimension reduction and make a few other changes), and and linear SVM.  Note that I do not embark upon hyperparameter search (in part, do to limited time and computational resources) so the results below could possibly be improved upon.  Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 Another caveat is that we use MNIST images that are of size 31x31 (framenet default).  These may be on the small side for optimal processing with Shearlab.
 
-Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these parameters.
+### Pseudo-comparison of (Scattering Framework / Wavelet Transform) Pairs
+
+Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these parameters.  Note also that the frameworks may differ in terms of how they pool, lowpass, etc. the wavelet features.
 
 
 | MNIST # Train | FrameNet-m1 | FrameNet-m2 | ScatNet-6-m1 | ScatNet-6-m2 |
@@ -45,16 +47,18 @@ Some wavelet/scattering transform framework pairs using "default" parameters (i.
 |  # dimensions       | 1089        | 9801        |   400         | 3856         |
 
 
-Some attempts at a more "apples-to-apples" comparison by placing wavelets by within a uniform scattering ; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths:
+### Apples-to-Apples (-ish) Comparison
+
+Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a similar scattering frameworks; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths:
 
 | MNIST # Train | CHCDW-12-m1  | CHCDW-12-m1-DR   |  Morlet-6-m1-j4 | Morlet-6-m1-j5 |
-|      :---:    |   :---:      | :---:            |  :---:       | :---:             |
-|    300        |    11.93     | 11.61            |  9.34        | 10.21             |
-|    500        |   6.59       | 6.73             |  4.76        | 5.16              |
-|    700        |    5.55      |  5.73            |  4.12        | 4.36              |
-|    1000       |     4.91     |   4.9            |  3.35        | 3.61              |
-|    2000       |     3.59     |   3.6            |  2.45        | 2.48              |
-|    5000       |     2.52     |   2.57           |  1.71        | 1.74              |
+|      :---:    |   :---:      | :---:            |  :---:          | :---:          |
+|    300        |    11.93     | 11.61            |  9.34           | 10.21          |
+|    500        |   6.59       | 6.73             |  4.76           | 5.16           |
+|    700        |    5.55      |  5.73            |  4.12           | 4.36           |
+|    1000       |     4.91     |   4.9            |  3.35           | 3.61           |
+|    2000       |     3.59     |   3.6            |  2.45           | 2.48           |
+|    5000       |     2.52     |   2.57           |  1.71           | 1.74           |
 
 |                     | CHCDW-12-m1    | CHCDW-12-m1-DR | Morlet-6-m1-j4 | Morlet-6-m1-j5 |
 |  :---:              | :---:          |  :---:         | :---:          |  :---:         |
