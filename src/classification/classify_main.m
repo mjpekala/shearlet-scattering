@@ -15,8 +15,8 @@ addpath('/Users/mjp/Documents/Repos/github/dcwt-v2/src/3rd-party/libsvm/matlab')
 
 %% svm train/test ====================================================
 
-%input_fn = fullfile('..', 'framenet', 'shearlet_feats.mat');
-input_fn = fullfile('..', 'framenet', 'shearlet_feats_config2.mat');
+input_fn = fullfile('..', 'framenet', 'shearlet_feats_config1.mat');
+%input_fn = fullfile('..', 'framenet', 'shearlet_feats_config2.mat');
 [~,output_fn,~] = fileparts(input_fn);
 output_fn = [output_fn '_yhat.mat'];
 
