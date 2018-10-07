@@ -66,8 +66,8 @@ Some attempts at a more balanced wavelet classification comparison by placing wa
 | Scattering order    |  1             | 1              |  1          | 1           | 1           |
 | wavelet             | CHCDW-12       | CHCDW-12       |  Morlet     | Morlet      | Morlet      |
 | Spatial Dims        | 8x8            |  8x8           |  8x8        |  8x8        | 8x8         |
-| Wavelet Scales      |  5             |  5             |  4          |  **5 **     | 5           |
-| "Directions"        | 12             |  12            |  6          |  6          | 12          |
+| Wavelet Scales      |  5             |  5             |  4          |  **5**      | 5           |
+| "Directions"        | 12             |  12            |  6          |  6          | **12**      |
 | dim. reduction      | none           | SVM-weight     | none        |  none       | none        |
 |  # dimensions       | 12288          |  9801          |  1600       |  1984       |             |
 |                     | (1+3x5)x8x8x12 |                | (1+6x4)x8x8 | (1+6x4)x8x8 |             |
