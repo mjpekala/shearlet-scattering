@@ -53,26 +53,26 @@ Some attempts at a more balanced wavelet classification comparison by placing wa
 In particular, we use a simple scattering tree with the same low-pass filters and no pruning based on energy decreasing paths (aka the "Brute Force Tree" (BFT)).  
 The idea here is to enforce more consistency in the wavelet comparison by making the lowpass filter uniform.
 
-| MNIST # Train       | CHCDW-12-m1    | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b  | Morlet-12-a |
-|      :---:          |   :---:        | :---:            |  :---:      | :---:       | :---:       |
-|    300              |    11.93       | 11.61            |  9.34       | 10.21       |  11.23      |
-|    500              |   6.59         | 6.73             |  4.76       | 5.16        | 5.78        |
-|    700              |    5.55        |  5.73            |  4.12       | 4.36        |  5.05       |
-|    1000             |     4.91       |   4.9            |  3.35       | 3.61        |   4.01      |
-|    2000             |     3.59       |   3.6            |  2.45       | 2.48        |  2.74       |
-|    5000             |     2.52       |   2.57           |  1.71       | 1.74        |  1.94       |
-|  :---:              | :---:          |  :---:           | :---:       |  :---:      | :---:       |
-| Framework           | BFT            | BFT              |   BFT       | BFT         | BFT         |
-| SVM                 | linear         | linear           | linear      | linear      | linear      |
-| Scattering order    |  1             | 1                |  1          | 1           | 1           |
-| wavelet             | CHCDW-12       | CHCDW-12         |  Morlet     | Morlet      | Morlet      |
-| "Spatial" Dims      | 8x8            |  8x8             |  8x8        |  8x8        | 8x8         |
-| Wavelet Scales (J)  |  5             |  5               |  **4**      |  **5**      | 5           |
-| Multi-wavelets (L)  | 3              |  3               |  1          |  1          | 1           |
-| "Directions"        | 12             |  12              |  6          |  6          | 12          |
-| dim. reduction      | none           | SVM-weight       | none        |  none       | none        |
-|  # dimensions       | 12288          |  9801            |  1600       |  1984       | 3904        |
-|                     | (1+3x5)x12x8x8 |                  | (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8 |
+| MNIST # Train       | CHCDW-12-m1    | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b  | Morlet-12-a | Morlet-6-c  |
+|      :---:          |   :---:        | :---:            |  :---:      | :---:       | :---:       | :---:       |
+|    300              |    11.93       | 11.61            |  9.34       | 10.21       |  11.23      |  10.07      |
+|    500              |   6.59         | 6.73             |  4.76       | 5.16        | 5.78        |  5.62       |
+|    700              |    5.55        |  5.73            |  4.12       | 4.36        |  5.05       |  4.73       |
+|    1000             |     4.91       |   4.9            |  3.35       | 3.61        |   4.01      |  3.99       |
+|    2000             |     3.59       |   3.6            |  2.45       | 2.48        |  2.74       | 2.79        |
+|    5000             |     2.52       |   2.57           |  1.71       | 1.74        |  1.94       | 1.9         |
+|  :---:              | :---:          |  :---:           | :---:       |  :---:      | :---:       | :---:       |
+| Framework           | BFT            | BFT              |   BFT       | BFT         | BFT         | BFT         |
+| SVM                 | linear         | linear           | linear      | linear      | linear      |  linear     |
+| Scattering order    |  1             | 1                |  1          | 1           | 1           |  1          |
+| wavelet             | CHCDW-12       | CHCDW-12         |  Morlet     | Morlet      | Morlet      | Morlet      |
+| "Spatial" Dims      | 8x8            |  8x8             |  8x8        |  8x8        | 8x8         |  **4x4**    |
+| Wavelet Scales (J)  |  5             |  5               |  **4**      |  **5**      | 5           |   4         |
+| Multi-wavelets (L)  | 3              |  3               |  1          |  1          | 1           |   1         |
+| "Directions"        | 12             |  12              |  6          |  6          | 12          |    6        |
+| dim. reduction      | none           | SVM-weight       | none        |  none       | none        |  none       |
+|  # dimensions       | 12288          |  9801            |  1600       |  1984       | 3904        |  400        |
+|                     | (1+3x5)x12x8x8 |                  | (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8| (1+4x6)x4x4 |
 
 Some observations:
 1. For the 6-direction Morlet wavelet, it doesn't seem to make a huge difference whether we use 4 or 5 scales.
