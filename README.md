@@ -59,8 +59,6 @@ Some attempts at a more balanced wavelet classification comparison by placing wa
 |    1000       |     4.91     |   4.9            |  3.35       | 3.61       |       |
 |    2000       |     3.59     |   3.6            |  2.45       | 2.48       |       |
 |    5000       |     2.52     |   2.57           |  1.71       | 1.74       |       |
-
-|                     | CHCDW-12-m1    | CHCDW-12-m1-DR | Morlet-6-a  | Morlet-6-b  | Morlet-12-a |
 |  :---:              | :---:          |  :---:         | :---:       |  :---:      | :---:       |
 | SVM                 | linear         | linear         | linear      | linear      | linear      |
 | Scattering order    |  1             | 1              |  1          | 1           | 1           |
