@@ -23,7 +23,7 @@ Some wavelet/scattering transform framework pairs using "default" parameters (i.
 1.  For FrameNet, we partially adopted parameters used with the separable wavelets reported in the B&W publication; however, we are using them with Shearlets, which is included in their software package but not explicitly mentioned/advertised in their publication.
 2.  For ScatNet, we use the 6-direction Morlet wavelet akin to what is described in B&M.
 
-Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
+Values reported in the table are **error rates**, aggregated across all 10 classes on the MNIST test set (which has 10000 examples).
 
 | MNIST # Train | FrameNet-m1 | FrameNet-m2 | ScatNet-6-m1 | ScatNet-6-m2 |
 |      :---:    |   :---:     |    :---:    |  :---:       |  :---:       |
