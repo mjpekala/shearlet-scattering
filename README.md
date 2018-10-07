@@ -23,28 +23,32 @@ Another caveat is that we use MNIST images that are of size 31x31 (framenet defa
 I have also included some results from our experiments with Haar-type CDW (joint work with W. Czaja).
 
 
-| # Training Examples | Shear-BW-m1 | Shear-BW-m2 | Haar-12-m1 | Haar-12-m1-DR  |
-|      :---:          |   :---:     |    :---:    |   :---:    | :---:          |
-|    300              |   21.2      |   13.20     |    11.93   | 11.61          |
-|    500              |   13.63     |  7.59       |   6.59     | 6.73           |
-|    700              |   10.97     |   5.99      |    5.55    |  5.73          |
-|    1000             |   10.12     |  5.12       |     4.91   |   4.9          |
-|    2000             |   8.27      |  4.07       |     3.59   |   3.6          |
-|    5000             |   6.28      |  2.84       |     2.52   |   2.57         |
+| MNIST # Train | FrameNet-m1 | FrameNet-m2 | Haar-12-m1 | Haar-12-m1-DR  | ScatNet-6-m2 |
+|      :---:    |   :---:     |    :---:    |   :---:    | :---:          |  :---:       |
+|    300        |   21.2      |   13.20     |    11.93   | 11.61          |              |
+|    500        |   13.63     |  7.59       |   6.59     | 6.73           |              |
+|    700        |   10.97     |   5.99      |    5.55    |  5.73          |              |
+|    1000       |   10.12     |  5.12       |     4.91   |   4.9          |              |
+|    2000       |   8.27      |  4.07       |     3.59   |   3.6          |              |
+|    5000       |   6.28      |  2.84       |     2.52   |   2.57         |              |
 
 Some information about these feature sets:
 
-|                     | Shear-BW-m1 | Shear-BW-m2 |  Haar-12-m1 | Haar-12-m1-DR |
-|  :---:              | :---:       |     :---:   |  :---:      |  :---:        |
-|  # dimensions       | 1089        | 9801        |  12288      |  9801         |
-| dim. reduction      | none        | none        |  none       | SVM-weight    | 
-| Scattering depth    | 1           |   2         |   1         | 1             | 
-| SVM                 | linear      | linear      |  linear     | linear        | 
-| wavelet             | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      | 
+|                     | FrameNet-m1 | FrameNet-m2 |  Haar-12-m1 | Haar-12-m1-DR | ScatNet-6-m2 |
+|  :---:              | :---:       |     :---:   |  :---:      |  :---:        |  :---:       |
+|  # dimensions       | 1089        | 9801        |  12288      |  9801         | 3856         |
+| dim. reduction      | none        | none        |  none       | SVM-weight    | none         |
+| Scattering order    | 1           |   2         |   1         | 1             |  2           |
+| SVM                 | linear      | linear      |  linear     | linear        |  linear      |
+| wavelet             | Shearlet    | Shearlet    |  CHCDW-12   | CHCDW-12      |  Morlet      |
 
 The CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
 2. layer 2: (8*8*12) * (3*log(32)) = 11520
+
+Notes:
+1. FrameNet provides state-of-the art performance (comparable with ScatNet+Morlet-6) for MNIST when using separable wavelets and a full training data set (see their paper).  So we believe the FrameNet architecture & theory is sound; our experiments here are explicitly to explore properties of Shearlet scatterings not to say anything about FrameNet as a whole vs. another scattering architecture.
+2.  Similarly, our goal is not to try to get best possible overall performance on MNIST, but to as fairly as possible compare different CDW wavelets in scattering context.  Hence the linear svm and minimal dimension reduction.  Otherwise, interpretation becomes even more difficult than it already is.  We refer reader to FrameNet and ScatNet papers for what is possible when all measures are taken to get best possible results.
 
 ## References
 
