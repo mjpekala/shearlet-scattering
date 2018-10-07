@@ -15,14 +15,11 @@ I have also taken the liberty of downloading the software dependencies for frame
 
 3.  *Evaluate performance*.  While framenet can run SVM evaluation, for comparison across wavelet scatterings I created a simple standalone script for evaluating using linear SVMs (which is also used for Morlet and CHCDW wavelets in a separate project).  A copy of the evaluation script is available [here](./src/evaluation/classify_main.m).  Note this requires a local libsvm installation.  With some minor modifications the script could be changed to use Matlab's built-in SVM, if desired.
 
-[//]: # Expected results
-[//]: # The results reported below are for the default framenet shearlet configuration ("shearlet0"), a two-layer scattering network configuration similar to that provided by the framenet authors for MNIST with separable wavelets (although I omit dimension reduction and make a few other changes), and and linear SVM.  Note that I do not embark upon hyperparameter search (in part, do to limited time and computational resources) so the results below could possibly be improved upon.  Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
-Another caveat is that we use MNIST images that are of size 31x31 (framenet default).  These may be on the small side for optimal processing with Shearlab.
 
 ## Pseudo-comparison of (Scattering Framework / Wavelet Transform) Pairs
 
-Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these parameters.  Note also that the frameworks may differ in terms of how they pool, lowpass, etc. the wavelet features.
-
+Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these hyper-parameters.  Note also that the frameworks may differ in terms of how they pool, lowpass, etc. the wavelet features.
+Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 
 | MNIST # Train | FrameNet-m1 | FrameNet-m2 | ScatNet-6-m1 | ScatNet-6-m2 |
 |      :---:    |   :---:     |    :---:    |  :---:       |  :---:       |
