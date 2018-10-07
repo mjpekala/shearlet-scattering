@@ -76,7 +76,7 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 
 Some observations:
 1. For the 6-direction Morlet wavelet, it doesn't seem to make a huge difference whether we use 4 or 5 scales.
-2. For the Morlet wavelet, the 12 direction variant actually seems worse than the 6 direction variant. Perhaps for MNIST we have reached a point of diminishing returns for the number of angles and are just adding difficulty to the subsequent classification problem?   Note this is also consistent with what I had observed for regression with MNIST and Morlet!  Nice that the two at least seem to agree...
+2. For the Morlet wavelet, the 12 direction variant actually seems worse than the 6 direction variant. Perhaps for MNIST we have reached a point of diminishing returns for the number of angles and are just adding difficulty to the subsequent classification problem?   Note this is also consistent with what I had observed for regression with MNIST and Morlet (even though we used global averaging in that experiment)!  Nice that the two at least seem to agree...
 3. The added dimensionality (due to 8x8 downsampling?) seems to be providing an advantage relatve to the ScatNet m=1 case.
 4.  Without some on-the-fly dimension reduction (e.g. pruning frequency decreasing paths) the growth of # dimensions for CHCDW is like (1 + LxJ + (LxJ)^2 + ...)*T, where T = DxDx12.
 
