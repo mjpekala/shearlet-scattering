@@ -114,27 +114,83 @@ Some observations:
 3. The added dimensionality (due to 8x8 downsampling?) seems to be providing an advantage relatve to the ScatNet m=1 case.
 
 ## Blurred MNIST
-Here we investigate the impact of Gaussian blurring on some of the aforementioned wavelet/scattering configurations.
 
-| MNIST # Train       |BLUR-Morlet-6-a | BLUR-Morlet-6-b | BLUR-CHCDW-12-a |
-|      :---:          |   :---:        |  :---:          | :---:           |
-|    300              |   26.70        |  31.52          | 27.90           |
-|    500              |   19.20        |                 | 19.42           |
-|    700              |   15.41        |                 | 16.55           |
-|    1000             |   13.36        |  19.05          | 14.05           |
-|    2000             |   10.40        |  11.75          |  11.19          |
-|    5000             |   7.56         |   8.74          |  8.79           |
-|  :---:              | :---:          |  :---:          |  :---:          |
-| Framework           | BFT            |  ScatNet        |  BFT            |
-| SVM                 | linear         | linear          | linear          |
-| Scattering order    |  1             | 1               |  linear         |
-| wavelet             | Morlet         | Morlet          | CHCDW           |
-| "Spatial" Dims      | 8x8            |                 | 8x8             |
-| Wavelet Scales (J)  |  4             |    4            | 5               |
-| Multi-wavelets (L)  | 1              |    1            | 3               |
-| "Directions"        | 6              |    6            | 12              |
-| dim. reduction      | none           |  none           | none            |
-|  # dimensions       | 1600           |    400          | 12288           |
+Here we investigate the impact of Gaussian blurring on the MNIST classification problem.
+
+### Comparisons across Wavelet and Scattering Frameworks
+
+Note: one has the ability to configure the wavelets in each framework.  Some care should be taken to make these configurations as fair/even as possible.  Currently, defaults for ScatNet were used based on Bruna and Mallat while defaults for FrameNet were loosely based on the provided example that was for a different (non-shearlet) wavelet.
+
+One argument against this table below is that the wavelet configurations are such that the number of dimensions is drastically different.  One could argue that we should either (a) adjust wavelet parameters so that the overall number of dimensions is closer or (b) run some kind of dimension reduction to bring the number of dimensions closer together.  The former is probably cleaner.
+
+
+| MNIST Blur Table 1  | BLUR-Morlet-6   | BLUR-CHCDW-12   | BLUR-Shearlet   |
+|      :---:          |  :---:          | :---:           | :---:           |
+|    300              |  31.52          | 27.90           | 31.8            |
+|    500              |                 | 19.42           | 25.03           |
+|    700              |                 | 16.55           | 21.22           |
+|    1000             |  19.05          | 14.05           | 17.77           |
+|    2000             |  11.75          |  11.19          | 13.47           |
+|    5000             |   8.74          |  8.79           | 10.44           |
+|  :---:              |  :---:          |  :---:          | :---:           |
+| Framework           |  ScatNet        |  BFT            | FrameNet        |
+| SVM                 | linear          | linear          | linear          |
+| Scattering order    |    1            |  1              | 1               |
+| wavelet             | Morlet          | CHCDW           | Shearlet        |
+| "Spatial" Dims      |                 | 8x8             |                 |
+| Wavelet Scales (J)  |    4            | 5               |                 |
+| Multi-wavelets (L)  |    1            | 3               |                 |
+| "Directions"        |    6            | 12              |                 |
+| dim. reduction      | none            |  none           | none            |
+|  # dimensions       | 400             | 12288           | 1089            |
+|                     |                 | (1+3x5)x(12x8x8)|                 |
+
+This next table is for an additional layer of scattering.
+
+| MNIST Blur Table 2  | BLUR-Shearlet   |
+|      :---:          |  :---:          |
+|    300              |    26.46        |
+|    500              |    18.00        |
+|    700              |    14.06        |
+|    1000             |    11.78        |
+|    2000             |    8.49         |
+|    5000             |    5.92         |
+|  :---:              |  :---:          |
+| Framework           |  FrameNet       |
+| SVM                 | linear          |
+| Scattering order    | 2               |
+| wavelet             | Shearlet        |
+| "Spatial" Dims      |                 |
+| Wavelet Scales (J)  |                 |
+| Multi-wavelets (L)  |                 |
+| "Directions"        |                 |
+| dim. reduction      | none            |
+|  # dimensions       | 9801            |
+
+
+
+### Extras
+
+| MNIST # Train       | Extra-a        |
+|      :---:          |   :---:        |
+|    300              |   26.70        |
+|    500              |   19.20        |
+|    700              |   15.41        |
+|    1000             |   13.36        |
+|    2000             |   10.40        |
+|    5000             |   7.56         |
+|  :---:              | :---:          |
+| Framework           | BFT            |
+| SVM                 | linear         |
+| Scattering order    |  1             |
+| wavelet             | Morlet         |
+| "Spatial" Dims      | 8x8            |
+| Wavelet Scales (J)  |  4             |
+| Multi-wavelets (L)  | 1              |
+| "Directions"        | 6              |
+|  # dimensions       | 1600           |  
+|                     | (1+4x6)x(8x8)  |
+
 
 ## References
 
