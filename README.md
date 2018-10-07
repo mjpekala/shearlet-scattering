@@ -18,7 +18,11 @@ I have also taken the liberty of downloading the software dependencies for frame
 
 ## Pseudo-comparison of (Scattering Framework / Wavelet Transform) Pairs
 
-Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these hyper-parameters.  Note also that the frameworks may differ in terms of how they pool, lowpass, etc. the wavelet features.
+Some wavelet/scattering transform framework pairs using "default" parameters (i.e. those similar to results reported in paper, or for similar wavelets).  Note that we have *not* explicitly attempted to optimize any of these hyper-parameters, but rather tried to simply take parameters that were similar to those that have already been published.  Note also that the frameworks may differ in terms of how they pool, lowpass, etc. the wavelet features.
+
+1.  For FrameNet, we partially adopted parameters used with the separable wavelets reported in the B&W publication; however, we are using them with Shearlets, which is included in their software package but not explicitly mentioned/advertised in their publication.
+2.  For ScatNet, we use the 6-direction Morlet wavelet akin to what is described in B&M.
+
 Values reported in the table are *error rates*, aggregated across all 10 classes on the MNIST test set (which has 10000 instances).
 
 | MNIST # Train | FrameNet-m1 | FrameNet-m2 | ScatNet-6-m1 | ScatNet-6-m2 |
@@ -45,28 +49,28 @@ Values reported in the table are *error rates*, aggregated across all 10 classes
 
 ## Apples-to-Apples (-ish) Comparison
 
-Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a similar scattering frameworks; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths:
+Some attempts at a more balanced wavelet classification comparison by placing wavelets by within a similar scattering frameworks; here, a simple scattering framework with the same low-pass filters and no energy decreasing paths.  The idea here is to enforce more consistency in the wavelet comparison by making the sowpass filter uniform.
 
-| MNIST # Train | CHCDW-12-m1  | CHCDW-12-m1-DR   |  Morlet-6-m1-j4 | Morlet-6-m1-j5 |
-|      :---:    |   :---:      | :---:            |  :---:          | :---:          |
-|    300        |    11.93     | 11.61            |  9.34           | 10.21          |
-|    500        |   6.59       | 6.73             |  4.76           | 5.16           |
-|    700        |    5.55      |  5.73            |  4.12           | 4.36           |
-|    1000       |     4.91     |   4.9            |  3.35           | 3.61           |
-|    2000       |     3.59     |   3.6            |  2.45           | 2.48           |
-|    5000       |     2.52     |   2.57           |  1.71           | 1.74           |
+| MNIST # Train | CHCDW-12-m1  | CHCDW-12-m1-DR   |  Morlet-6-a | Morlet-6-b | Morlet-12-a |
+|      :---:    |   :---:      | :---:            |  :---:      | :---:      | :---:       |
+|    300        |    11.93     | 11.61            |  9.34       | 10.21      |       |
+|    500        |   6.59       | 6.73             |  4.76       | 5.16       |       |
+|    700        |    5.55      |  5.73            |  4.12       | 4.36       |       |
+|    1000       |     4.91     |   4.9            |  3.35       | 3.61       |       |
+|    2000       |     3.59     |   3.6            |  2.45       | 2.48       |       |
+|    5000       |     2.52     |   2.57           |  1.71       | 1.74       |       |
 
-|                     | CHCDW-12-m1    | CHCDW-12-m1-DR | Morlet-6-m1-j4 | Morlet-6-m1-j5 |
-|  :---:              | :---:          |  :---:         | :---:          |  :---:         |
-| SVM                 | linear         | linear         | linear         | linear         |
-| Scattering order    |  1             | 1              |  1             | 1              |
-| wavelet             | CHCDW-12       | CHCDW-12       |  Morlet        | Morlet         |
-| Spatial Dims        | 8x8            |  8x8           |  8x8           |  8x8           |
-| Wavelet Scales      |  5             |  5             |  4             |  5             |
-| "Directions"        | 12             |  12            |  6             |  6             |
-| dim. reduction      | none           | SVM-weight     | none           |  none          |
-|  # dimensions       | 12288          |  9801          |  1600          |  1984          |
-|                     | (1+3x5)x8x8x12 |                | (1+6x4)x8x8    | (1+6x4)x8x8    |
+|                     | CHCDW-12-m1    | CHCDW-12-m1-DR | Morlet-6-a  | Morlet-6-b  | Morlet-12-a |
+|  :---:              | :---:          |  :---:         | :---:       |  :---:      | :---:       |
+| SVM                 | linear         | linear         | linear      | linear      | linear      |
+| Scattering order    |  1             | 1              |  1          | 1           | 1           |
+| wavelet             | CHCDW-12       | CHCDW-12       |  Morlet     | Morlet      | Morlet      |
+| Spatial Dims        | 8x8            |  8x8           |  8x8        |  8x8        | 8x8         |
+| Wavelet Scales      |  5             |  5             |  4          |  **5 **     | 5           |
+| "Directions"        | 12             |  12            |  6          |  6          | 12          |
+| dim. reduction      | none           | SVM-weight     | none        |  none       | none        |
+|  # dimensions       | 12288          |  9801          |  1600       |  1984       |             |
+|                     | (1+3x5)x8x8x12 |                | (1+6x4)x8x8 | (1+6x4)x8x8 |             |
 
 In this simple network, the CHCDW-12 dimension size comes from downsampling a 32x32 image by a factor of 4, L=3, and J=log(32):
 1. layer 1: 8 * 8 * 12 = 768
