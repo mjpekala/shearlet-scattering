@@ -33,9 +33,6 @@ Values reported in the table are *error rates*, aggregated across all 10 classes
 |    1000       |   10.12     |  5.12       |  4.42        | 2.70         |
 |    2000       |   8.27      |  4.07       |  3.08        | 2.03         |
 |    5000       |   6.28      |  2.84       |  2.11        | 1.41         |
-
-
-|                     | FrameNet-m1 | FrameNet-m2 |  ScatNet-6-m1 | ScatNet-6-m2 |
 |  :---:              | :---:       |     :---:   |   :---:       | :---:        |
 | Framework           | B&W         | B&W         |   ScatNet     | ScatNet      |
 | SVM                 | linear      | linear      |   linear      | linear       |
