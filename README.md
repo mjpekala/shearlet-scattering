@@ -85,23 +85,23 @@ Here we investigate the impact of Gaussian blurring on some of the aforementione
 
 | MNIST # Train       |  Morlet-6-a    | CHCDW-12-a |
 |      :---:          |   :---:        |  :---:     |
-|    300              |   26.70        |
-|    500              |   19.20        |
-|    700              |   15.41        |
-|    1000             |   13.36        |
-|    2000             |   10.40        |
-|    5000             |   7.56         |
-|  :---:              | :---:          |  :---:    |
-| Framework           | BFT            |  BFT      |
-| SVM                 | linear         | linear    |
-| Scattering order    |  1             | 1         |
-| wavelet             | Morlet         | Morlet    |
-| "Spatial" Dims      | 8x8            |  8x8      |
-| Wavelet Scales (J)  |  4             |  5        |
-| Multi-wavelets (L)  | 1              |   3       |
-| "Directions"        | 6              |  12       |
-| dim. reduction      | none           |  none     |
-|  # dimensions       | 1600           | 12288     |
+|    300              |   26.70        |  27.90     |
+|    500              |   19.20        |  19.42     |
+|    700              |   15.41        |  16.55     |
+|    1000             |   13.36        |  14.05     |
+|    2000             |   10.40        |  11.19     |
+|    5000             |   7.56         |  8.79      |
+|  :---:              | :---:          |  :---:     |
+| Framework           | BFT            |  BFT       |
+| SVM                 | linear         | linear     |
+| Scattering order    |  1             | 1          |
+| wavelet             | Morlet         | Morlet     |
+| "Spatial" Dims      | 8x8            |  8x8       |
+| Wavelet Scales (J)  |  4             |  5         |
+| Multi-wavelets (L)  | 1              |   3        |
+| "Directions"        | 6              |  12        |
+| dim. reduction      | none           |  none      |
+|  # dimensions       | 1600           | 12288      |
 
 ## References
 
