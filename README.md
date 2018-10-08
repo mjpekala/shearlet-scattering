@@ -53,27 +53,27 @@ Some attempts at a more balanced wavelet classification comparison by placing wa
 In particular, we use a simple scattering tree with the same low-pass filters and no pruning based on energy decreasing paths (aka the "Brute Force Tree" (BFT)).  
 The idea here is to enforce more consistency in the wavelet comparison by making the lowpass filter uniform.
 
-| MNIST # Train       | CHCDW-12-a     | CHCDW-12-b       | CHCDW-12-c              |  CHCDW-12-d  |
-|      :---:          |   :---:        | :---:            | :---:                   |  :---:       |
-|    300              |    11.93       | 11.61            |  14.31                  |              |
-|    500              |   6.59         | 6.73             |   7.61                  |              |
-|    700              |    5.55        |  5.73            |   6.21                  |              |
-|    1000             |     4.91       |   4.9            |   4.91                  |              |
-|    2000             |     3.59       |   3.6            |   3.74                  |              |
-|    5000             |     2.52       |   2.57           |   *                     |              |
-|  :---:              | :---:          |  :---:           |  :---:                  |  :---:       |
-| Framework           | BFT            | BFT              |  BFT                    |  BFT         |
-| SVM                 | linear         | linear           | linear                  |  linear      |
-| Scattering order    |  1             | 1                |  2                      |  2           |
-| wavelet             | CHCDW-12       | CHCDW-12         | CHCDW-12                |  CHCDW-12    |
-| "Spatial" Dims      | 8x8            |  8x8             |  **4x4**                |  8x8         |
-| Wavelet Scales (J)  |  5             |  5               |   5                     |   5          |
-| Multi-wavelets (L)  | 3              |  3               |   3                     |   3          |
-| "Directions"        | 12             |  12              |   12                    | 12           |
-| in-situ DR          | none           | none             |  none                   | max(L)       |
-| ex post facto DR    | none           | **SVM-weight**   |  none                   |  none        |
-|  # dimensions       | 12288          |  9801            |  46272                  | 23808        |
-|                     | (1+3x5)x12x8x8 |                  | (1+3x5+(3x5)^2)x12x4x4  |              |
+| MNIST # Train       | CHCDW-12-a     | CHCDW-12-b       | CHCDW-12-c              |  CHCDW-12-d      |
+|      :---:          |   :---:        | :---:            | :---:                   |  :---:           |
+|    300              |    11.93       | 11.61            |  14.31                  | 12.59            |
+|    500              |   6.59         | 6.73             |   7.61                  |  6.69            |
+|    700              |    5.55        |  5.73            |   6.21                  |  5.61            |
+|    1000             |     4.91       |   4.9            |   4.91                  |  4.97            |
+|    2000             |     3.59       |   3.6            |   3.74                  |   3.68           |
+|    5000             |     2.52       |   2.57           |   *                     |   2.50           |
+|  :---:              | :---:          |  :---:           |  :---:                  |  :---:           |
+| Framework           | BFT            | BFT              |  BFT                    |  BFT             |
+| SVM                 | linear         | linear           | linear                  |  linear          |
+| Scattering order    |  1             | 1                |  2                      |  2               |
+| wavelet             | CHCDW-12       | CHCDW-12         | CHCDW-12                |  CHCDW-12        |
+| "Spatial" Dims      | 8x8            |  8x8             |  **4x4**                |  8x8             |
+| Wavelet Scales (J)  |  5             |  5               |   5                     |   5              |
+| Multi-wavelets (L)  | 3              |  3               |   3                     |   3              |
+| "Directions"        | 12             |  12              |   12                    | 12               |
+| in-situ DR          | none           | none             |  none                   | max(L)           |
+| ex post facto DR    | none           | **SVM-weight**   |  none                   |  none            |
+|  # dimensions       | 12288          |  9801            |  46272                  | 23808            |
+|                     | (1+3x5)x12x8x8 |                  | (1+3x5+(3x5)^2)x12x4x4  | (1+5+5x5)x12x8x8 |
 
 * = Omitted due to time constraints and high probability of being uninteresting.
 
