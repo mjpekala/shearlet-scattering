@@ -86,27 +86,27 @@ The idea here is to enforce more consistency in the wavelet comparison by making
 
 
 
-| MNIST # Train       | Morlet-6-a   | Morlet-6-b  | Morlet-12-a | Morlet-6-c  | Morlet-6-d  |
-|      :---:          | :---:        | :---:       | :---:       | :---:       | :---:       |
-|    300              |   9.34       | 10.21       |  11.23      |  10.07      | 9.63        |
-|    500              |   4.76       | 5.16        | 5.78        |  5.62       | 5.07        |
-|    700              |   4.12       | 4.36        |  5.05       |  4.73       | 4.41        |
-|    1000             |   3.35       | 3.61        |   4.01      |  3.99       | 3.74        |
-|    2000             |   2.45       | 2.48        |  2.74       | 2.79        | 2.60        |
-|    5000             |   1.71       | 1.74        |  1.94       | 1.9         | 1.79        |
-|  :---:              |  :---:       |  :---:      | :---:       | :---:       | :---:       |
-| Framework           |    BFT       | BFT         | BFT         | BFT         |  BFT        |
-| SVM                 |  linear      | linear      | linear      |  linear     | linear      |
-| Scattering order    |   1          | 1           | 1           |  1          |  1          |
-| wavelet             |   Morlet     | Morlet      | Morlet      | Morlet      |  Morlet     |
-| "Spatial" Dims      |   8x8        |  8x8        | 8x8         |  **4x4**    |  **16x16**  |
-| Wavelet Scales (J)  |   4          |  **5**      | 5           |   4         |  4          |
-| Multi-wavelets (L)  |   1          |  1          | 1           |   1         |  1          |
-| "Directions"        |   6          |  6          | **12**      |    6        |   6         |
-| in-situ DR          |  none        | none        | none        | none        | none        |
-| ex post facto DR    |  none        |  none       | none        |  none       |  none       |
-|  # dimensions       |   1600       |  1984       | 3904        |  400        | 6400        |
-|                     |  (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8| (1+4x6)x4x4 | (1+4x6)x16^2|
+| MNIST # Train       | Morlet-6-a   | Morlet-6-b  | Morlet-12-a | Morlet-6-c  | Morlet-6-d  |  Morlet-6-e |
+|      :---:          | :---:        | :---:       | :---:       | :---:       | :---:       |  :---:      |
+|    300              |   9.34       | 10.21       |  11.23      |  10.07      | 9.63        |  6.83       |
+|    500              |   4.76       | 5.16        | 5.78        |  5.62       | 5.07        |  3.6        |
+|    700              |   4.12       | 4.36        |  5.05       |  4.73       | 4.41        |  2.84       |
+|    1000             |   3.35       | 3.61        |   4.01      |  3.99       | 3.74        |  2.38       |
+|    2000             |   2.45       | 2.48        |  2.74       | 2.79        | 2.60        |  1.83       |
+|    5000             |   1.71       | 1.74        |  1.94       | 1.9         | 1.79        |  1.16       |
+|  :---:              |  :---:       |  :---:      | :---:       | :---:       | :---:       |  :---:      |
+| Framework           |    BFT       | BFT         | BFT         | BFT         |  BFT        |  BFT        |
+| SVM                 |  linear      | linear      | linear      |  linear     | linear      | linear      |
+| Scattering order    |   1          | 1           | 1           |  1          |  1          |   **2**     |
+| wavelet             |   Morlet     | Morlet      | Morlet      | Morlet      |  Morlet     |  Morlet     |
+| "Spatial" Dims      |   8x8        |  8x8        | 8x8         |  **4x4**    |  **16x16**  |  **4x4**    |
+| Wavelet Scales (J)  |   4          |  **5**      | 5           |   4         |  4          |  4          |
+| Multi-wavelets (L)  |   1          |  1          | 1           |   1         |  1          | 1           |
+| "Directions"        |   6          |  6          | **12**      |    6        |   6         |   6         |
+| in-situ DR          |  none        | none        | none        | none        | none        | **by J**    |
+| ex post facto DR    |  none        |  none       | none        |  none       |  none       |  none       |
+|  # dimensions       |   1600       |  1984       | 3904        |  400        | 6400        | 3856        |
+|                     |  (1+4x6)x8x8 | (1+5x6)x8x8 | (1+5x12)x8x8| (1+4x6)x4x4 | (1+4x6)x16^2|             |
 
 Some observations:
 1. For the 6-direction Morlet wavelet, it doesn't seem to make a huge difference whether we use 4 or 5 scales.
