@@ -49,7 +49,8 @@ set_type = 1;               % 1 - get balanced test set, starting from 1st index
 %      This is not a framenet limitation, but more a property of scattering
 %      transforms themselves.  Our CHCDW transform has the same
 %      limitations.
-ss_config = 1;
+%ss_config = 1;
+ss_config = 2;
 
 switch(ss_config)
   case 2
